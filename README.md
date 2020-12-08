@@ -11,6 +11,13 @@
 - Ruby on Rails 5.2.4
 - PostgreSQL 13.0
 
+### 課題要件
+#### カリキュラム内の技術2つ
+- devise
+- コメント機能
+#### カリキュラム外の技術１つ
+- gem ransack
+
 ### カタログ設計
 https://docs.google.com/spreadsheets/d/1VN4TUUtaxoDlsHDO_mTb35kCe8r-iUgk_gl4wwA2hIY/edit?usp=sharing
 
@@ -27,7 +34,7 @@ https://docs.google.com/spreadsheets/d/1mLR2U8Y0k5jwtWZyNa1bj5FpBnbOJNIs3TZMA7B4
 https://docs.google.com/spreadsheets/d/1wnIoIsZRbb5nex3cg7XPfNdKF2QgA51RteiQxNCEjXY/edit?usp=sharing
 
 ### ワイヤーフレーム
-https://xd.adobe.com/embed/50534b81-c05e-42f3-a45f-dab7b468ad49-0500
+https://docs.google.com/spreadsheets/d/1XP3-ehSTh8yCo7O6BzRgsrcJOxldlo3G7CcN3EuaNFM/edit?usp=sharing
 
 ### 使用gem
 - carrierwave
