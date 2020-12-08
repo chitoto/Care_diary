@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 介護記録共有アプリ Care_diary
 
-Things you may want to cover:
+### 概要
+このアプリは大切なペットたちの毎日の介護記録を保存できます。
+家族等、グループ間での記録の共有ができます。
 
-* Ruby version
+### バージョン
+- Ruby 2.6.5
+- Ruby on Rails 5.2.4
+- PostgreSQL 13.0
 
-* System dependencies
+### カタログ設計
+https://docs.google.com/spreadsheets/d/1VN4TUUtaxoDlsHDO_mTb35kCe8r-iUgk_gl4wwA2hIY/edit?usp=sharing
 
-* Configuration
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1r4ORFqm0TPI60ZcfFwpZpNGLoic7DmoMvqAbAnBrjog/edit?usp=sharing
 
-* Database creation
+### テーブル定義
+https://docs.google.com/spreadsheets/d/11ClpPAXqi4d9Kvego3cwrdv59cRk7P_L14Ex_Xh31Uw/edit?usp=sharing
 
-* Database initialization
+### ER図
+https://docs.google.com/spreadsheets/d/1mLR2U8Y0k5jwtWZyNa1bj5FpBnbOJNIs3TZMA7B4dNM/edit?usp=sharing
 
-* How to run the test suite
+### 画面遷移図
+https://docs.google.com/spreadsheets/d/1wnIoIsZRbb5nex3cg7XPfNdKF2QgA51RteiQxNCEjXY/edit?usp=sharing
 
-* Services (job queues, cache servers, search engines, etc.)
+### ワイヤーフレーム
+https://xd.adobe.com/embed/50534b81-c05e-42f3-a45f-dab7b468ad49-0500
 
-* Deployment instructions
-
-* ...
+### 使用gem
+- carrierwave
+- mini_magick
+- devise
+- ransack
+- chartkick
+- simple_calendar
