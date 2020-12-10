@@ -1,0 +1,11 @@
+<h1>確認画面</h1>
+<%= form_with(model: @pet, url: pets_path, local: true) do |form| %>
+  <!-- 確認画面でアップロードした画像を表示させるための記述 -->
+  <%= image_tag(@pet.icon.url) if @pet.icon && @pet.icon.url %>
+  <%= form.hidden_field :icon_cache %>
+  <%= form.submit "投稿する" %>
+<% end %>
+<%= form_with(model:@pet, url:new_pet_path, local:true, method:"get") do |form| %>
+  <%= form.hidden_field :icon_cache %>
+  <%= form.submit "戻る", name: "back" %>
+<% end %>

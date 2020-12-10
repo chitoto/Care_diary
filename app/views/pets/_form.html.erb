@@ -1,14 +1,14 @@
 <%= form_with(model: @pet, local: true) do |f| %>
 
-  <div class="pet_name">
+  <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div class="pet_birthday">
+  <div class="field">
     <%= f.label :birthday %>
     <%= f.date_field :birthday %>
   </div>
-  <div class="pet_sex">
+  <div class="field">
     <%= f.label :gender, :男の子 %>
     <%= f.radio_button :gender, "男の子" %>
     &nbsp
@@ -18,15 +18,17 @@
     <%= f.label :gender, :わからない %>
     <%= f.radio_button :gender, "わからない" %>
   </div>
-  <div class="species">
+  <div class="field">
     <%= f.label :species %>
     <%= f.text_field :species %>
   </div>
-  <div class="pet_icon">
+  <div class="field">
     <%= f.label :icon %>
-    <%= f.text_field :icon %>
+    <%= image_tag(@pet.icon.url) if @pet.icon && @pet.icon.url %>
+    <%= f.file_field :icon %>
+    <%= f.hidden_field :icon_cache %>
   </div>
-  <div class="pet_memo">
+  <div class="field">
     <%= f.label :memo %>
     <%= f.text_field :memo %>
   </div>
