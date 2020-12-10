@@ -3,12 +3,12 @@
 <%= link_to "ペットを登録する", new_pet_path %>
 <table>
   <tr>
-    <th>名前</th>
-    <th>誕生日</th>
-    <th>性別</th>
-    <th>種別</th>
-    <th>画像</th>
-    <th>メモ</th>
+    <th><%= t("activerecord.attributes.pet.name") %></th>
+    <th><%= t("activerecord.attributes.pet.birthday") %></th>
+    <th><%= t("activerecord.attributes.pet.gender") %></th>
+    <th><%= t("activerecord.attributes.pet.species") %></th>
+    <th><%= t("activerecord.attributes.pet.icon") %></th>
+    <th><%= t("activerecord.attributes.pet.memo") %></th>
     <th></th>
   </tr>
 <% @pets.each do |pet| %>
