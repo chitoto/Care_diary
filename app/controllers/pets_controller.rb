@@ -11,10 +11,14 @@ class PetsController < ApplicationController
 
   def create
     @pet = Pet.new(pet_params)
-    if @pet.save
-      redirect_to new_pet_path, notice: "ペットを登録しました！"
-    else
+    if params[:back]
       render :new
+    else
+      if @pet.save
+        redirect_to pets_path, notice: "ペットを登録しました！"
+      else
+        render :new
+      end
     end
   end
 
@@ -30,6 +34,11 @@ class PetsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def confirm
+    @pet = Pet.new(pet_params)
+    render :new if @pet.invalid?
   end
 
   def destroy

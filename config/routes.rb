@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
   root to: "pets#index"
-  resources :pets
+  resources :pets do
+    collection do
+      post :confirm
+    end
+  end
 end
