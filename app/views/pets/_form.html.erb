@@ -1,0 +1,35 @@
+<%= form_with(model: @pet, local: true) do |f| %>
+
+  <div class="pet_name">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="pet_birthday">
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday %>
+  </div>
+  <div class="pet_sex">
+    <%= f.label :gender, :男の子 %>
+    <%= f.radio_button :gender, "男の子" %>
+    &nbsp
+    <%= f.label :gender, :女の子 %>
+    <%= f.radio_button :gender, "女の子" %>
+    &nbsp
+    <%= f.label :gender, :わからない %>
+    <%= f.radio_button :gender, "わからない" %>
+  </div>
+  <div class="species">
+    <%= f.label :species %>
+    <%= f.text_field :species %>
+  </div>
+  <div class="pet_icon">
+    <%= f.label :icon %>
+    <%= f.text_field :icon %>
+  </div>
+  <div class="pet_memo">
+    <%= f.label :memo %>
+    <%= f.text_field :memo %>
+  </div>
+  <%= f.submit %>
+<% end %>
+<%= link_to "一覧画面に戻る", pets_path %>
