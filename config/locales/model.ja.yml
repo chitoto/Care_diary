@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      pet: うちの子
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+      pet:
+        name: 名前
+        birthday: 誕生日
+        gender: 性別
+        species: 種別
+        memo: メモ
+        icon: アイコン

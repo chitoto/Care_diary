@@ -1,0 +1,46 @@
+<%= form_with(model: @pet, url: choose_new_or_edit, local: true) do |f| %>
+<% if @pet.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @pet.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @pet.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday %>
+  </div>
+  <div class="field">
+    <%= f.label :gender, :男の子 %>
+    <%= f.radio_button :gender, "男の子" %>
+    &nbsp
+    <%= f.label :gender, :女の子 %>
+    <%= f.radio_button :gender, "女の子" %>
+    &nbsp
+    <%= f.label :gender, :わからない %>
+    <%= f.radio_button :gender, "わからない" %>
+  </div>
+  <div class="field">
+    <%= f.label :species %>
+    <%= f.text_field :species %>
+  </div>
+  <div class="field">
+    <%= f.label :icon %>
+    <%= image_tag(@pet.icon.url) if @pet.icon && @pet.icon.url %>
+    <%= f.file_field :icon %>
+    <%= f.hidden_field :icon_cache %>
+  </div>
+  <div class="field">
+    <%= f.label :memo %>
+    <%= f.text_field :memo %>
+  </div>
+  <%= f.submit %>
+<% end %>
+<%= link_to "一覧画面に戻る", pets_path %>

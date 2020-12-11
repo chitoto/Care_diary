@@ -1,0 +1,21 @@
+<h1>確認画面</h1>
+<p>以下の内容で登録します</p>
+<%= form_with(model: @pet, url: pets_path, local: true) do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :birthday %>
+  <%= f.hidden_field :gender %>
+  <%= f.hidden_field :species %>
+  <%= f.hidden_field :memo %>
+  <p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
+  <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
+  <p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
+  <p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
+  <p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
+  <%= image_tag(@pet.icon.url) if @pet.icon && @pet.icon.url %>
+  <%= f.hidden_field :icon_cache %>
+  <%= f.submit  "登録する" %>
+<% end %>
+<%= form_with(model:@pet, url: new_pet_path, local:true, method:"get") do |f| %>
+  <%= f.hidden_field :icon_cache %>
+  <%= f.submit "戻る", name: "back" %>
+<% end %>
