@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   validates :name, presence: true
+
   mount_uploader :icon, ImageUploader
 
-  has_many :pets
+  has_many :pets, dependent: :destroy
 end

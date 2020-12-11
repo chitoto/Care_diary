@@ -1,0 +1,32 @@
+<h1>Users#show</h1>
+<%= link_to "編集", edit_user_registration_path(@user.id) %>
+<p>名前 : <%= @user.name %></p>
+<p>メールアドレス : <%= @user.email %></p>
+<p>アイコン : <%= image_tag @user.icon.url %></p>
+
+<table>
+  <tr>
+    <th><%= t("activerecord.attributes.pet.name") %></th>
+    <th><%= t("activerecord.attributes.pet.birthday") %></th>
+    <th><%= t("activerecord.attributes.pet.gender") %></th>
+    <th><%= t("activerecord.attributes.pet.species") %></th>
+    <th><%= t("activerecord.attributes.pet.icon") %></th>
+    <th><%= t("activerecord.attributes.pet.memo") %></th>
+    <th></th>
+  </tr>
+<% @user.pets.each do |pet| %>
+  <tr>
+    <td><%= pet.name %></td>
+    <td><%= pet.birthday %></td>
+    <td><%= pet.gender %></td>
+    <td><%= pet.species %></td>
+    <td><%= image_tag pet.icon.url %></td>
+    <td><%= pet.memo %></td>
+    <td>
+      <%= link_to "詳細", pet_path(pet.id) %>
+      <%= link_to "編集", edit_pet_path(pet.id) %>
+      <%= link_to '削除', pet_path(pet.id), method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
