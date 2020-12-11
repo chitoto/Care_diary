@@ -13,9 +13,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
-gem 'carrierwave'
-gem 'mini_magick'
-
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -45,5 +42,8 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'faker'
 gem 'seed-fu'
+gem 'dotenv-rails'
