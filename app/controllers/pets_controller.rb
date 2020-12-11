@@ -15,7 +15,7 @@ class PetsController < ApplicationController
       render :new
     else
       if @pet.save
-        redirect_to pets_path, notice: "ペットを登録しました！"
+        redirect_to pet_path(@pet.id), notice: "ペットを登録しました！"
       else
         render :new
       end
