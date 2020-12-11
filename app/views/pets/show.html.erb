@@ -1,7 +1,11 @@
 <h1>Pets#show</h1>
+<p>飼い主：<%= @pet.user.name %></p>
+
 <p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
 <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
 <p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
 <p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
 <p><%= t("activerecord.attributes.pet.icon") %>: <%= image_tag @pet.icon.url %></p>
 <p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
+
+<%= link_to "一覧画面に戻る", pets_path %>
