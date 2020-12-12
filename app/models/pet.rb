@@ -6,4 +6,5 @@ class Pet < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   belongs_to :user
+  has_many :wraps, dependent: :destroy
 end

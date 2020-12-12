@@ -1,5 +1,5 @@
 <h1>Pets#show</h1>
-<p>飼い主：<%= @pet.user.name %></p>
+<p>飼い主：<%= @pet.user.name %></p><%= link_to "ペット登録", new_pet_path %>
 
 <p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
 <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
@@ -9,3 +9,5 @@
 <p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
 
 <%= link_to "一覧画面に戻る", pets_path %>
+
+<%= link_to "介護記録する", new_pet_wrap_path(@pet) %>
