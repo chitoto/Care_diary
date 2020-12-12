@@ -30,7 +30,7 @@ class WrapsController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def update
