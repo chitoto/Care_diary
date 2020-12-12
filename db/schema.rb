@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_050903) do
+ActiveRecord::Schema.define(version: 2020_12_12_142212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conditions", force: :cascade do |t|
+    t.time "start_time"
+    t.float "weight"
+    t.float "temperature"
+    t.text "memo"
+    t.bigint "wrap_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wrap_id"], name: "index_conditions_on_wrap_id"
+  end
 
   create_table "pets", force: :cascade do |t|
     t.string "name", null: false
@@ -60,9 +71,11 @@ ActiveRecord::Schema.define(version: 2020_12_12_050903) do
     t.bigint "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date_record"], name: "index_wraps_on_date_record"
     t.index ["pet_id"], name: "index_wraps_on_pet_id"
   end
 
+  add_foreign_key "conditions", "wraps"
   add_foreign_key "pets", "users"
   add_foreign_key "wraps", "pets"
 end

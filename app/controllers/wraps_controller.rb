@@ -6,14 +6,15 @@ class WrapsController < ApplicationController
   end
 
   def new
-
+    @id = params[:pet_id].to_i
     @wrap = Wrap.new
+    @wrap.pet_id = @id
+    @wrap.conditions.build
   end
 
   def create
-    @id = params[:pet_id].to_i
-    @pet = Pet.find(@id)
-    @wrap = @pet.wraps.build(wrap_params)
+    @wrap = Wrap.new(wrap_params)
+
     if params[:back]
       render :new
     else
@@ -29,6 +30,7 @@ class WrapsController < ApplicationController
   end
 
   def edit
+    
   end
 
   def update
@@ -47,7 +49,9 @@ class WrapsController < ApplicationController
   private
 
   def wrap_params
-    params.require(:wrap).permit(:precaution_title, :precaution_content, :date_record, :pet_ids)
+    params.require(:wrap).permit(:precaution_title, :precaution_content, :date_record, :pet_id,
+    conditions_attributes: [ :id, :start_time, :weight, :temperature, :memo ]
+    )
   end
 
   def set_wrap

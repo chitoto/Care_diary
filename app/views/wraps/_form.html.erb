@@ -9,6 +9,9 @@
     </ul>
   </div>
 <% end %>
+<div class="field">
+  <%= f.hidden_field :pet_id %>
+</div>
   <div class="field">
     <%= f.label :precaution_title %>
     <%= f.text_field :precaution_title %>
@@ -21,7 +24,24 @@
     <%= f.label :date_record %>
     <%= f.date_field :date_record %>
   </div>
-
-  <%= f.submit %>
+  <%= f.fields_for :conditions do |condition| %>
+    <div class="field">
+      <%= condition.label :start_time %><br>
+      <%= condition.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= condition.label :weight %><br>
+      <%= condition.number_field :weight, step: "0.1", value: 8.0 %>
+    </div>
+    <div class="field">
+      <%= condition.label :temperature %><br>
+      <%= condition.number_field :temperature, step: "0.1", value: 38.0 %><br>
+    </div>
+    <div class="field">
+      <%= condition.label :memo %><br>
+      <%= condition.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
+ <% end %>
 <% end %>
 <%= link_to "一覧画面に戻る", pet_wraps_path(params[:pet_id]) %>
