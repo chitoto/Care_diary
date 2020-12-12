@@ -1,0 +1,22 @@
+<h1>Wraps#index</h1>
+<%= link_to "日付登録する", new_pet_wrap_path %>
+<table>
+  <tr>
+    <th><%= t("activerecord.attributes.wrap.precaution_title") %></th>
+    <th><%= t("activerecord.attributes.wrap.precaution_content") %></th>
+    <th><%= t("activerecord.attributes.wrap.date_record") %></th>
+    <th></th>
+  </tr>
+<% @wraps.each do |wrap| %>
+  <tr>
+    <td><%= wrap.precaution_title %></td>
+    <td><%= wrap.precaution_content %></td>
+    <td><%= wrap.date_record %></td>
+    <td>
+      <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id) %>
+      <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id) %>
+      <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
