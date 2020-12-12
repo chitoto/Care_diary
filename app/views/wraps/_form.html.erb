@@ -24,6 +24,7 @@
     <%= f.label :date_record %>
     <%= f.date_field :date_record %>
   </div>
+  <%# condition %>
   <%= f.fields_for :conditions do |condition| %>
     <div class="field">
       <%= condition.label :start_time %><br>
@@ -31,17 +32,96 @@
     </div>
     <div class="field">
       <%= condition.label :weight %><br>
-      <%= condition.number_field :weight, step: "0.1", value: 8.0 %>
+      <%= condition.number_field :weight, step: "0.1" %>
     </div>
     <div class="field">
       <%= condition.label :temperature %><br>
-      <%= condition.number_field :temperature, step: "0.1", value: 38.0 %><br>
+      <%= condition.number_field :temperature, step: "0.1" %><br>
     </div>
     <div class="field">
       <%= condition.label :memo %><br>
       <%= condition.text_field :memo %><br>
     </div>
     <%= f.submit '登録する' %>
+  <% end %>
+  <%# meal %>
+  <%= f.fields_for :meals do |meal| %>
+    <div class="field">
+      <%= meal.label :start_time %><br>
+      <%= meal.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= meal.label :shape %><br>
+      <%= meal.text_field :shape %>
+    </div>
+    <div class="field">
+      <%= meal.label :amount %><br>
+      <%= meal.text_field :amount %><br>
+    </div>
+    <div class="field">
+      <%= meal.label :memo %><br>
+      <%= meal.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
  <% end %>
+  <%# excretion %>
+  <%= f.fields_for :excretions do |excretion| %>
+    <div class="field">
+      <%= excretion.label :start_time %><br>
+      <%= excretion.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= excretion.label :shape %><br>
+      <%= excretion.text_field :shape %>
+    </div>
+    <div class="field">
+      <%= excretion.label :amount %><br>
+      <%= excretion.text_field :amount %><br>
+    </div>
+    <div class="field">
+      <%= excretion.label :smell %><br>
+      <%= excretion.text_field :smell %><br>
+    </div>
+    <div class="field">
+      <%= excretion.label :memo %><br>
+      <%= excretion.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
+ <% end %>
+  <%# medicine %>
+  <%= f.fields_for :medicines do |medicine| %>
+    <div class="field">
+      <%= medicine.label :start_time %><br>
+      <%= medicine.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= medicine.label :shape %><br>
+      <%= medicine.text_field :shape %>
+    </div>
+    <div class="field">
+      <%= medicine.label :memo %><br>
+      <%= medicine.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
+ <% end %>
+  <%# walk %>
+  <%= f.fields_for :walks do |walk| %>
+    <div class="field">
+      <%= walk.label :start_time %><br>
+      <%= walk.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= walk.label :how_many %><br>
+      <%= walk.text_field :how_many %>
+    </div>
+    <div class="field">
+      <%= walk.label :memo %><br>
+      <%= walk.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
+ <% end %>
+
+
+
 <% end %>
 <%= link_to "一覧画面に戻る", pet_wraps_path(params[:pet_id]) %>

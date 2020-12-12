@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_142212) do
+ActiveRecord::Schema.define(version: 2020_12_12_165139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,39 @@ ActiveRecord::Schema.define(version: 2020_12_12_142212) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["wrap_id"], name: "index_conditions_on_wrap_id"
+  end
+
+  create_table "excretions", force: :cascade do |t|
+    t.time "start_time"
+    t.string "shape"
+    t.string "amount"
+    t.string "smell"
+    t.text "memo"
+    t.bigint "wrap_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wrap_id"], name: "index_excretions_on_wrap_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.time "start_time"
+    t.string "shape"
+    t.string "amount"
+    t.text "memo"
+    t.bigint "wrap_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wrap_id"], name: "index_meals_on_wrap_id"
+  end
+
+  create_table "medicines", force: :cascade do |t|
+    t.time "start_time"
+    t.string "shape"
+    t.text "memo"
+    t.bigint "wrap_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wrap_id"], name: "index_medicines_on_wrap_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -64,6 +97,16 @@ ActiveRecord::Schema.define(version: 2020_12_12_142212) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "walks", force: :cascade do |t|
+    t.time "start_time"
+    t.string "how_many"
+    t.text "memo"
+    t.bigint "wrap_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wrap_id"], name: "index_walks_on_wrap_id"
+  end
+
   create_table "wraps", force: :cascade do |t|
     t.string "precaution_title"
     t.text "precaution_content"
@@ -76,6 +119,10 @@ ActiveRecord::Schema.define(version: 2020_12_12_142212) do
   end
 
   add_foreign_key "conditions", "wraps"
+  add_foreign_key "excretions", "wraps"
+  add_foreign_key "meals", "wraps"
+  add_foreign_key "medicines", "wraps"
   add_foreign_key "pets", "users"
+  add_foreign_key "walks", "wraps"
   add_foreign_key "wraps", "pets"
 end
