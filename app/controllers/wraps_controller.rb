@@ -6,22 +6,22 @@ class WrapsController < ApplicationController
   end
 
   def new
-
+    @id = params[:pet_id].to_i
     @wrap = Wrap.new
+    @wrap.conditions.build
+    @wrap.meals.build
+    @wrap.excretions.build
+    @wrap.medicines.build
+    @wrap.walks.build
+    @wrap.pet_id = @id
   end
 
   def create
-    @id = params[:pet_id].to_i
-    @pet = Pet.find(@id)
-    @wrap = @pet.wraps.build(wrap_params)
-    if params[:back]
-      render :new
+    @wrap = Wrap.new(wrap_params)
+    if @wrap.save
+      redirect_to pet_wraps_path(@wrap), notice: "日付を登録しました！"
     else
-      if @wrap.save
-        redirect_to pet_wraps_path(@wrap), notice: "日付を登録しました！"
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -29,6 +29,11 @@ class WrapsController < ApplicationController
   end
 
   def edit
+    @wrap.conditions.build
+    @wrap.meals.build
+    @wrap.excretions.build
+    @wrap.medicines.build
+    @wrap.walks.build
   end
 
   def update
@@ -47,7 +52,13 @@ class WrapsController < ApplicationController
   private
 
   def wrap_params
-    params.require(:wrap).permit(:precaution_title, :precaution_content, :date_record, :pet_ids)
+    params.require(:wrap).permit(:precaution_title, :precaution_content, :date_record, :pet_id,
+    conditions_attributes: [ :id, :start_time, :weight, :temperature, :memo ],
+    meals_attributes: [ :id, :start_time, :shape, :amount, :memo ],
+    excretions_attributes: [ :id, :start_time, :shape, :amount, :smell, :memo ],
+    medicines_attributes: [ :id, :start_time, :shape, :memo ],
+    medicines_attributes: [ :id, :start_time, :how_many, :memo ]
+    )
   end
 
   def set_wrap

@@ -1,0 +1,17 @@
+<%= form_with(model: [:pet, @wrap], local: true) do |f| %>
+  <%= f.fields_for :medicines do |medicine| %>
+    <div class="field">
+      <%= medicine.label :start_time %><br>
+      <%= medicine.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= medicine.label :shape %><br>
+      <%= medicine.text_field :shape %>
+    </div>
+    <div class="field">
+      <%= medicine.label :memo %><br>
+      <%= medicine.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
+  <% end %>
+<% end %>

@@ -1,0 +1,17 @@
+<%= form_with(model: [:pet, @wrap], local: true) do |f| %>
+  <%= f.fields_for :walks do |walk| %>
+    <div class="field">
+      <%= walk.label :start_time %><br>
+      <%= walk.time_field :start_time %>
+    </div>
+    <div class="field">
+      <%= walk.label :how_many %><br>
+      <%= walk.text_field :how_many %>
+    </div>
+    <div class="field">
+      <%= walk.label :memo %><br>
+      <%= walk.text_field :memo %><br>
+    </div>
+    <%= f.submit '登録する' %>
+  <% end %>
+<% end %>
