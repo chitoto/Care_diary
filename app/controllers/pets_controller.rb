@@ -10,7 +10,7 @@ class PetsController < ApplicationController
   end
 
   def create
-    @pet = Pet.new(pet_params)
+    @pet = current_user.pets.build(pet_params)
     if params[:back]
       render :new
     else
@@ -37,7 +37,7 @@ class PetsController < ApplicationController
   end
 
   def confirm
-    @pet = Pet.new(pet_params)
+    @pet = current_user.pets.build(pet_params)
     render :new if @pet.invalid?
   end
 

@@ -32,6 +32,7 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -47,3 +48,5 @@ gem 'mini_magick'
 gem 'faker'
 gem 'seed-fu'
 gem 'dotenv-rails'
+gem 'devise'
+gem 'devise-i18n'
