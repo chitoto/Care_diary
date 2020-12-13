@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "pets#index"
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -9,7 +10,8 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  root to: "pets#index"
+  resources :groups 
+
   resources :pets do
     collection do
       post :confirm

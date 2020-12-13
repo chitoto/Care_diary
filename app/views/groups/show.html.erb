@@ -1,0 +1,9 @@
+<h1>Groups#show</h1>
+<p>グループ管理者：<%= @group_owner.user.name %></p>
+
+<p><%= t("activerecord.attributes.group.name") %>: <%= @group.name %></p>
+<p><%= t("activerecord.attributes.group.icon") %>: <%= image_tag @group.icon.url %></p>
+
+<%= link_to "一覧画面に戻る", groups_path %>
+
+<%= link_to "新しくグループを作る", new_group_path %>

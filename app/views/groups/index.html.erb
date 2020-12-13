@@ -1,0 +1,22 @@
+<h1>Groups#index</h1>
+<h1>groups#index</h1>
+
+<%= link_to "ペットを登録する", new_group_path %>
+<table>
+  <tr>
+    <th><%= t("activerecord.attributes.group.name") %></th>
+    <th><%= t("activerecord.attributes.group.icon") %></th>
+    <th></th>
+  </tr>
+<% @groups.each do |group| %>
+  <tr>
+    <td><%= group.name %></td>
+    <td><%=image_tag group.icon.url %></td>
+    <td>
+      <%= link_to "詳細", group_path(group.id) %>
+      <%= link_to "編集", edit_group_path(group.id) %>
+      <%= link_to '削除', group_path(group.id), method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>

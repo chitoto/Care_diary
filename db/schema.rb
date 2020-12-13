@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_165139) do
+ActiveRecord::Schema.define(version: 2020_12_13_042906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assigns", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_assigns_on_group_id"
+    t.index ["user_id"], name: "index_assigns_on_user_id"
+  end
 
   create_table "conditions", force: :cascade do |t|
     t.time "start_time"
@@ -36,6 +45,15 @@ ActiveRecord::Schema.define(version: 2020_12_12_165139) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["wrap_id"], name: "index_excretions_on_wrap_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "owner_id", null: false
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
   create_table "meals", force: :cascade do |t|
@@ -69,6 +87,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_165139) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_pets_on_group_id"
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
@@ -118,10 +138,13 @@ ActiveRecord::Schema.define(version: 2020_12_12_165139) do
     t.index ["pet_id"], name: "index_wraps_on_pet_id"
   end
 
+  add_foreign_key "assigns", "groups"
+  add_foreign_key "assigns", "users"
   add_foreign_key "conditions", "wraps"
   add_foreign_key "excretions", "wraps"
   add_foreign_key "meals", "wraps"
   add_foreign_key "medicines", "wraps"
+  add_foreign_key "pets", "groups"
   add_foreign_key "pets", "users"
   add_foreign_key "walks", "wraps"
   add_foreign_key "wraps", "pets"
