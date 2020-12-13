@@ -3,7 +3,7 @@ class Wrap < ApplicationRecord
   belongs_to :pet
 
   has_many :conditions,  dependent: :destroy
-  accepts_nested_attributes_for :conditions, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :conditions, allow_destroy: true, reject_if: [:all_blank, :new_record?]
   has_many :meals,  dependent: :destroy
   accepts_nested_attributes_for :meals, allow_destroy: true, reject_if: :all_blank
   has_many :excretions,  dependent: :destroy

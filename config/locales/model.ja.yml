@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       pet: うちの子
+      wrap: ラップ
     attributes:
       user:
         name: 名前
@@ -18,3 +19,31 @@ ja:
         species: 種別
         memo: メモ
         icon: アイコン
+      wrap:
+        precaution_title: 変更事項
+        precaution_content: 変更箇所
+        date_record: 記録日
+      wrap/condition:
+        start_time: 時間
+        weight: 体重
+        temperature: 体温
+        memo: メモ
+      wrap/meal:
+        start_time: 時間
+        shape: 種類
+        amount: 量
+        memo: メモ
+      wrap/excretion:
+        start_time: 時間
+        shape: 種類
+        amount: 量
+        smell: におい
+        memo: メモ
+      wrap/medicine:
+        start_time: 時間
+        shape: 種類
+        memo: メモ
+      wrap/walk:
+        start_time: 時間
+        how_many: 実行時間
+        memo: メモ

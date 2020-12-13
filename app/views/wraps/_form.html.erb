@@ -10,9 +10,6 @@
   </div>
 <% end %>
   <div class="field">
-    <%= f.hidden_field :pet_id %>
-  </div>
-  <div class="field">
     <%= f.label :precaution_title %>
     <%= f.text_field :precaution_title %>
   </div>
@@ -37,7 +34,31 @@
     <div class="col">
       <div class="collapse multi-collapse" id="multiCollapseExample1">
         <div class="card card-body">
-          <%= render 'condition' %>
+          <%= f.fields_for :conditions do |condition| %>
+            <div class="field">
+              <%= condition.label :start_time %><br>
+              <%= condition.time_field :start_time %>
+            </div>
+            <div class="field">
+              <%= condition.label :weight %><br>
+              <%= condition.number_field :weight, step: "0.1" %>
+            </div>
+            <div class="field">
+              <%= condition.label :temperature %><br>
+              <%= condition.number_field :temperature, step: "0.1" %><br>
+            </div>
+            <div class="field">
+              <%= condition.label :memo %><br>
+              <%= condition.text_field :memo %><br>
+            </div>
+            <% if @wrap.persisted? %>
+              <div class="field">
+                <%= f.label :_destroy %>
+                <%= f.check_box :_destroy %>
+              </div>
+            <% end %>
+            <%= f.submit '登録する' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -45,7 +66,31 @@
     <div class="col">
       <div class="collapse multi-collapse" id="multiCollapseExample2">
         <div class="card card-body">
-          <%= render 'meal' %>
+          <%= f.fields_for :meals do |meal| %>
+            <div class="field">
+              <%= meal.label :start_time %><br>
+              <%= meal.time_field :start_time %>
+            </div>
+            <div class="field">
+              <%= meal.label :shape %><br>
+              <%= meal.text_field :shape %>
+            </div>
+            <div class="field">
+              <%= meal.label :amount %><br>
+              <%= meal.text_field :amount %><br>
+            </div>
+            <div class="field">
+              <%= meal.label :memo %><br>
+              <%= meal.text_field :memo %><br>
+            </div>
+            <% if @wrap.persisted? %>
+              <div class="field">
+                <%= f.label :_destroy %>
+                <%= f.check_box :_destroy %>
+              </div>
+            <% end %>
+            <%= f.submit '登録する' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -54,7 +99,35 @@
     <div class="col">
       <div class="collapse multi-collapse" id="multiCollapseExample3">
         <div class="card card-body">
-          <%= render 'excretion' %>
+          <%= f.fields_for :excretions do |excretion| %>
+            <div class="field">
+              <%= excretion.label :start_time %><br>
+              <%= excretion.time_field :start_time %>
+            </div>
+            <div class="field">
+              <%= excretion.label :shape %><br>
+              <%= excretion.text_field :shape %>
+            </div>
+            <div class="field">
+              <%= excretion.label :amount %><br>
+              <%= excretion.text_field :amount %><br>
+            </div>
+            <div class="field">
+              <%= excretion.label :smell %><br>
+              <%= excretion.text_field :smell %><br>
+            </div>
+            <div class="field">
+              <%= excretion.label :memo %><br>
+              <%= excretion.text_field :memo %><br>
+            </div>
+            <% if @wrap.persisted? %>
+              <div class="field">
+                <%= f.label :_destroy %>
+                <%= f.check_box :_destroy %>
+              </div>
+            <% end %>
+            <%= f.submit '登録する' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -62,7 +135,27 @@
     <div class="col">
       <div class="collapse multi-collapse" id="multiCollapseExample4">
         <div class="card card-body">
-          <%= render 'medicine' %>
+          <%= f.fields_for :medicines do |medicine| %>
+            <div class="field">
+              <%= medicine.label :start_time %><br>
+              <%= medicine.time_field :start_time %>
+            </div>
+            <div class="field">
+              <%= medicine.label :shape %><br>
+              <%= medicine.text_field :shape %>
+            </div>
+            <div class="field">
+              <%= medicine.label :memo %><br>
+              <%= medicine.text_field :memo %><br>
+            </div>
+            <% if @wrap.persisted? %>
+              <div class="field">
+                <%= f.label :_destroy %>
+                <%= f.check_box :_destroy %>
+              </div>
+            <% end %>
+            <%= f.submit '登録する' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -70,7 +163,27 @@
     <div class="col">
       <div class="collapse multi-collapse" id="multiCollapseExample5">
         <div class="card card-body">
-          <%= render 'walk' %>
+          <%= f.fields_for :walks do |walk| %>
+            <div class="field">
+              <%= walk.label :start_time %><br>
+              <%= walk.time_field :start_time %>
+            </div>
+            <div class="field">
+              <%= walk.label :how_many %><br>
+              <%= walk.text_field :how_many %>
+            </div>
+            <div class="field">
+              <%= walk.label :memo %><br>
+              <%= walk.text_field :memo %><br>
+            </div>
+            <% if @wrap.persisted? %>
+              <div class="field">
+                <%= f.label :_destroy %>
+                <%= f.check_box :_destroy %>
+              </div>
+            <% end %>
+            <%= f.submit '登録する' %>
+          <% end %>
         </div>
       </div>
     </div>
