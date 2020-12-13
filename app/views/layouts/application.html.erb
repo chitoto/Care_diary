@@ -10,21 +10,33 @@
   </head>
 
   <body>
-  <% if user_signed_in? %>
-    <li><%= link_to "ペット登録", new_pet_path %></li>
-    <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to 'ログイン', new_user_session_path %></li>
-    <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-  <% end %>
+    <div class="heder">
+      <% if user_signed_in? %>
+        <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <li>
+          <p><%= link_to '新しくグループを作成', new_group_path %></p>
+        </li>
+        <li>
+          <h5>グループを選んでください</h5>
+          <% (current_user.groups.blank? ? group.where(id: 1) : current_user.groups).each do |group| %>
+            <%= link_to group_path(group) do %>
+              <p><%= group.name %></p>
+            <% end %>
+          <% end %>
+        </li>
+      <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+      <% end %>
 
-  <% if notice %>
-    <p class="alert alert-notice"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-error"><%= alert %></p>
-  <% end %>
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+    </div>
 
     <%= yield %>
   </body>

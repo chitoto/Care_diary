@@ -1,0 +1,34 @@
+<h1>Mains#top</h1>
+
+<h1 style="color: red;"><%= @working_group.name.truncate(15) %></h1>
+
+    <nav>
+      <ul>
+        <% @working_group.pets.each do |pet| %>
+        <li>
+          <a href="#" class="">
+            <p>
+              <%= pet.name %>
+              <% if current_user == pet.group.owner || current_user == pet.user %>
+                <object style ="margin-left: 20px;"><%= link_to '削除', pet_path(pet.id), method: :delete, class: 'btn btn-sm btn-danger pet-delete', data: { confirm: "#{pet.name}の登録を削除しますか？" } %></object>
+              <% end %>
+            </p>
+          </a>
+          <ul>
+            <% pet.wraps.each do |wrap| %>
+              <li>
+                <%= link_to wrap_path(wrap) do %>
+                  <p><%= wrap.date_record %></p>
+                  <% end %>
+              </li>
+            <% end %>
+              <li class="nav-item">
+                <%= link_to new_pet_wrap_path(pet) do %>
+                  <p>+ 日別記録を追加</p>
+                <% end %>
+              </li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </nav>

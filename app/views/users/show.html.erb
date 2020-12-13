@@ -4,29 +4,68 @@
 <p>メールアドレス : <%= @user.email %></p>
 <p>アイコン : <%= image_tag @user.icon.url %></p>
 
-<table>
-  <tr>
-    <th><%= t("activerecord.attributes.pet.name") %></th>
-    <th><%= t("activerecord.attributes.pet.birthday") %></th>
-    <th><%= t("activerecord.attributes.pet.gender") %></th>
-    <th><%= t("activerecord.attributes.pet.species") %></th>
-    <th><%= t("activerecord.attributes.pet.icon") %></th>
-    <th><%= t("activerecord.attributes.pet.memo") %></th>
-    <th></th>
-  </tr>
-<% @user.pets.each do |pet| %>
-  <tr>
-    <td><%= pet.name %></td>
-    <td><%= pet.birthday %></td>
-    <td><%= pet.gender %></td>
-    <td><%= pet.species %></td>
-    <td><%= image_tag pet.icon.url %></td>
-    <td><%= pet.memo %></td>
-    <td>
-      <%= link_to "詳細", pet_path(pet.id) %>
-      <%= link_to "編集", edit_pet_path(pet.id) %>
-      <%= link_to '削除', pet_path(pet.id), method: :delete %>
-    </td>
-  </tr>
-<% end %>
-</table>
+
+  <div>
+    <h5><%= I18n.t('views.messages.group_you_belong_to') %></h5>
+    <table class="table">
+      <tbody>
+        <% @user.groups.each do |group| %>
+          <tr>
+            <% unless group.icon_url.blank? %>
+            <td><%= image_tag group.icon_url, size: '40x40' %></td>
+            <% end %>
+            <td><%= group.name %></td>
+            <td><%= link_to I18n.t('views.messages.select_group'), group %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4">
+    <h5><%= I18n.t('views.messages.posted_pets') %></h5>
+    <table class="table">
+      <tbody>
+        <% @user.pets.each do |pet| %>
+          <tr>
+            <td>
+              <%= link_to pet_path(pet) do %>
+                <span><%= pet.group.name %><%= I18n.t('views.common.group') %></span>
+                <span class="badge bg-primary"><%= l(pet.wrap.date_record) %></span>
+                <%= pet.name %>
+              <% end %>
+              <br>
+              <%= l(pet.created_at, format: :long) %><%= I18n.t('views.messages.posted_at') %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+    <table>
+      <tr>
+        <th><%= t("activerecord.attributes.pet.name") %></th>
+        <th><%= t("activerecord.attributes.pet.birthday") %></th>
+        <th><%= t("activerecord.attributes.pet.gender") %></th>
+        <th><%= t("activerecord.attributes.pet.species") %></th>
+        <th><%= t("activerecord.attributes.pet.icon") %></th>
+        <th><%= t("activerecord.attributes.pet.memo") %></th>
+        <th></th>
+      </tr>
+    <% @user.pets.each do |pet| %>
+      <tr>
+        <td><%= pet.name %></td>
+        <td><%= pet.birthday %></td>
+        <td><%= pet.gender %></td>
+        <td><%= pet.species %></td>
+        <td><%= image_tag pet.icon.url %></td>
+        <td><%= pet.memo %></td>
+        <td>
+          <%= link_to "詳細", pet_path(pet.id) %>
+          <%= link_to "編集", edit_pet_path(pet.id) %>
+          <%= link_to '削除', pet_path(pet.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
