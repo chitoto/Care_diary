@@ -32,7 +32,7 @@ class WrapsController < ApplicationController
     @wrap.excretions.build
     @wrap.medicines.build
     @wrap.walks.build
-    binding.pry
+    
     if @wrap.update(wrap_params)
       redirect_to pet_wraps_path(@wrap.pet_id), notice: "介護記録を追加しました！"
     else
