@@ -15,8 +15,6 @@ Rails.application.routes.draw do
       post :confirm
     end
     resources :wraps do
-      get :new_record
-      patch :add_record
     end
   end
 
