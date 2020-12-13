@@ -24,6 +24,7 @@
     <td><%= wrap.walks.length %></td>
     <td>
       <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id) %>
+      <%= link_to "追加", pet_wrap_new_record_path(wrap.pet_id, wrap.id) %>
       <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id) %>
       <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete %>
     </td>
