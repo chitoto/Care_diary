@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "groups#show"
+  root to: "groups#index"
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

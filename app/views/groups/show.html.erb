@@ -1,34 +1,30 @@
-<h1>Mains#top</h1>
 
-<h1 style="color: red;"><%= @working_group.name.truncate(15) %></h1>
+<h1>Groups#show</h1>
+<p>グループ管理者：<%= @group_owner.name %></p>
 
-    <nav>
-      <ul>
-        <% @working_group.pets.each do |pet| %>
-        <li>
-          <a href="#" class="">
-            <p>
-              <%= pet.name %>
-              <% if current_user == pet.group.owner || current_user == pet.user %>
-                <object style ="margin-left: 20px;"><%= link_to '削除', pet_path(pet.id), method: :delete, class: 'btn btn-sm btn-danger pet-delete', data: { confirm: "#{pet.name}の登録を削除しますか？" } %></object>
-              <% end %>
-            </p>
-          </a>
-          <ul>
-            <% pet.wraps.each do |wrap| %>
-              <li>
-                <%= link_to wrap_path(wrap) do %>
-                  <p><%= wrap.date_record %></p>
-                  <% end %>
-              </li>
-            <% end %>
-              <li class="nav-item">
-                <%= link_to new_pet_wrap_path(pet) do %>
-                  <p>+ 日別記録を追加</p>
-                <% end %>
-              </li>
-          </ul>
-        </li>
-        <% end %>
-      </ul>
-    </nav>
+<%= link_to "ペットを登録する", new_group_pet_path(@group) %>
+<%= link_to "グループ一覧", groups_path %>
+
+<p><%= t("activerecord.attributes.group.name") %>: <%= @group.name %></p>
+<p><%= t("activerecord.attributes.group.icon") %>: <%= image_tag @group.icon.url %></p>
+
+<table>
+  <% @group.pets.each do |pet| %>
+  <tr>
+    <th><%= t("activerecord.attributes.pet.name") %></th>
+    <th><%= t("activerecord.attributes.pet.birthday") %></th>
+    <th><%= t("activerecord.attributes.pet.gender") %></th>
+    <th><%= t("activerecord.attributes.pet.species") %></th>
+    <th><%= t("activerecord.attributes.pet.icon") %></th>
+    <th><%= t("activerecord.attributes.pet.memo") %></th>
+  </tr>
+  <tr>
+    <td><%= pet.name %></td>
+    <td><%= pet.birthday %></td>
+    <td><%= pet.gender %></td>
+    <td><%= pet.species %></td>
+    <td><%= image_tag pet.icon.url %></td>
+    <td><%= pet.memo %></td>
+  </tr>
+  <% end %>
+</table>

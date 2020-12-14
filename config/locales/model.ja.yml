@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      group: グループ
       pet: うちの子
       wrap: ラップ
     attributes:
@@ -12,6 +13,9 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+      group:
+        name: グループ名
+        icon: グループアイコン
       pet:
         name: 名前
         birthday: 誕生日

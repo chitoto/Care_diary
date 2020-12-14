@@ -1,0 +1,25 @@
+<h1>groups#index</h1>
+<%= link_to "新しくグループを作成", new_group_path %>
+
+<% @groups.each do |group| %>
+  <table>
+    <tr>
+      <td>グループ名：<%= group.name %></td>
+    </tr>
+    <tr>
+      <% if group.icon.blank? %>
+        <td><%= image_tag 'icon.png', width:'30px', height:'30px', alt: 'No image' %></td>
+      <% else %>
+      <td><%=image_tag group.icon.url %></td>
+      <% end %>
+      <td>
+        <%= link_to "詳細", group_path(group.id) %>
+        <% if current_user == group.owner %>
+        <%= link_to "編集", edit_group_path(group.id) %>
+        <%= link_to '削除', group_path(group.id), method: :delete %>
+        <% end %>
+      </td>
+    </tr>
+
+  </table>
+<% end %>
