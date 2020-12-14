@@ -10,22 +10,54 @@
   </head>
 
   <body>
-  <% if user_signed_in? %>
-    <li><%= link_to "ペット登録", new_pet_path %></li>
-    <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to 'ログイン', new_user_session_path %></li>
-    <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-  <% end %>
-
-  <% if notice %>
-    <p class="alert alert-notice"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-error"><%= alert %></p>
-  <% end %>
-
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CareDiary</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+          <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.name %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "マイページ", user_path(current_user.id), class: 'dropdown-item' %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              グループ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to '新しくグループを作成', new_group_path %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "#{current_user.name}のグループ一覧", groups_path, class: 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
+              <% current_user.groups.each do |group| %>
+                <%= link_to "#{group.name}", group_path(group), class: 'dropdown-item' %>
+              <% end %>
+            </div>
+          </li>
+          <% else %>
+          <li><%= link_to 'ログイン', new_user_session_path, class: 'dropdown-item' %></li>
+          <li><%= link_to 'サインアップ', new_user_registration_path, class: 'dropdown-item' %></li>
+          <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="main">
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

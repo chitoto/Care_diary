@@ -10,15 +10,11 @@ class PetsController < ApplicationController
   end
 
   def create
-    @pet = current_user.pets.build(pet_params)
-    if params[:back]
-      render :new
+    @pet = Pet.new(pet_params)
+    if @pet.save
+      redirect_to pet_path(@pet.id), notice: "ペットを登録しました！"
     else
-      if @pet.save
-        redirect_to pet_path(@pet.id), notice: "ペットを登録しました！"
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -36,11 +32,6 @@ class PetsController < ApplicationController
     end
   end
 
-  def confirm
-    @pet = current_user.pets.build(pet_params)
-    render :new if @pet.invalid?
-  end
-
   def destroy
     @pet.destroy
     redirect_to pets_path, notice:"削除しました！"
@@ -49,7 +40,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :birthday, :gender, :species, :icon, :icon_cache, :memo)
+    params.require(:pet).permit(:name, :birthday, :gender, :species, :icon, :icon_cache, :memo, :group_id)
   end
 
   def set_pet
