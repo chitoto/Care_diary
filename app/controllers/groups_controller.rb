@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner = current_user
     if @group.save
-      @group.add_group_member(@group.owner, @group)
+      @group.assigns_create(@group.owner, @group)
       redirect_to @group, notice: 'グループを作成しました！'
     else
       flash.now[:error] = 'グループ作成に失敗しました！'
@@ -41,6 +41,13 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: 'グループを削除しました'
   end
 
+  def add_member
+    group_id = params[:group]
+    @group = Group.find(group_id)
+    @group.assigns_create(current_user, @group)
+    redirect_to group_path(group_id)
+  end
+
   private
 
   def set_group
@@ -50,4 +57,5 @@ class GroupsController < ApplicationController
   def group_params
     params.fetch(:group, {}).permit( :name, :icon, :icon_cache, :owner_id)
   end
+
 end

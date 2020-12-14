@@ -1,5 +1,5 @@
 <h1>Pets#show</h1>
-<p>飼い主：<%= @pet.user.name %></p><%= link_to "ペット登録", new_pet_path %>
+<p>飼い主グループ名：<%= @pet.group.name %></p><%= link_to "ペット登録", new_pet_path %>
 
 <p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
 <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>

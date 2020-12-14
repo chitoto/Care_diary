@@ -1,30 +1,55 @@
 
 <h1>Groups#show</h1>
-<p>グループ管理者：<%= @group_owner.name %></p>
+<%= link_to "新しくグループ作成", new_group_path %><%= link_to "グループ一覧", groups_path %>
 
-<%= link_to "ペットを登録する", new_group_pet_path(@group) %>
-<%= link_to "グループ一覧", groups_path %>
-
-<p><%= t("activerecord.attributes.group.name") %>: <%= @group.name %></p>
-<p><%= t("activerecord.attributes.group.icon") %>: <%= image_tag @group.icon.url %></p>
+<br>
 
 <table>
-  <% @group.pets.each do |pet| %>
-  <tr>
-    <th><%= t("activerecord.attributes.pet.name") %></th>
-    <th><%= t("activerecord.attributes.pet.birthday") %></th>
-    <th><%= t("activerecord.attributes.pet.gender") %></th>
-    <th><%= t("activerecord.attributes.pet.species") %></th>
-    <th><%= t("activerecord.attributes.pet.icon") %></th>
-    <th><%= t("activerecord.attributes.pet.memo") %></th>
-  </tr>
-  <tr>
-    <td><%= pet.name %></td>
-    <td><%= pet.birthday %></td>
-    <td><%= pet.gender %></td>
-    <td><%= pet.species %></td>
-    <td><%= image_tag pet.icon.url %></td>
-    <td><%= pet.memo %></td>
-  </tr>
+  <td>
+    <% if @group.icon.blank? %>
+      <%= image_tag 'icon.png', width:'30px', height:'30px', alt: 'No image' %>
+    <% else %>
+    <%= image_tag @group.icon.url %>
+    <% end %>
+  </td>
+  <td><%= @group.name %></td>
+  <td>グループ管理者：<%= @group_owner.name %></td>
+  <% unless [current_user] == @group.members %>
+    <td>
+      <%= button_to "グループに入る", {controller: :groups, action: :add_member, group: @group},{method: :post} %>
+    </td>
   <% end %>
 </table>
+
+<% if [current_user] == @group.members %>
+  <table>
+    <%= link_to "ペットを登録する", new_pet_path %>
+    <% if @group.pets.blank? %>
+      <p>ペットの登録がありません、ペットを登録してください</p>
+    <% else %>
+      <% @group.pets.each do |pet| %>
+      <tr>
+        <th><%= t("activerecord.attributes.pet.name") %></th>
+        <th><%= t("activerecord.attributes.pet.birthday") %></th>
+        <th><%= t("activerecord.attributes.pet.gender") %></th>
+        <th><%= t("activerecord.attributes.pet.species") %></th>
+        <th><%= t("activerecord.attributes.pet.icon") %></th>
+        <th><%= t("activerecord.attributes.pet.memo") %></th>
+      </tr>
+      <tr>
+        <td><%= pet.name %></td>
+        <td><%= pet.birthday %></td>
+        <td><%= pet.gender %></td>
+        <td><%= pet.species %></td>
+        <% if pet.icon.blank? %>
+          <td><%= image_tag 'icon.png', alt: 'No image' %></td>
+        <% else %>
+          <td><%= image_tag pet.icon.url %></td>
+        <% end %>
+
+        <td><%= pet.memo %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

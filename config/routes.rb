@@ -12,13 +12,13 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
-    resources :assigns, only: [:create, :destroy]
-    resources :pets do
-      collection do
-        post :confirm
-      end
-      resources :wraps do
-      end
+    collection do
+      post 'add_member'
+    end
+  end
+
+  resources :pets do
+    resources :wraps do
     end
   end
 

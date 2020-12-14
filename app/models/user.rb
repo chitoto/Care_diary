@@ -12,6 +12,5 @@ class User < ApplicationRecord
   has_many :groups, foreign_key: :owner_id
   has_many :assigns, dependent: :destroy
   has_many :groups, through: :assigns
-  has_many :pets, dependent: :destroy
 
 end

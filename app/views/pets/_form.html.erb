@@ -1,4 +1,4 @@
-<%= form_with(model: @pet, url: choose_new_or_edit, local: true) do |f| %>
+<%= form_with(model: @pet, local: true) do |f| %>
 <% if @pet.errors.any? %>
   <div id="error_explanation">
     <h2><%= @pet.errors.count %>件のエラーがあります。</h2>
@@ -41,6 +41,11 @@
     <%= f.label :memo %>
     <%= f.text_field :memo %>
   </div>
+
+  <div class="field">
+    <%= f.label :group_id %>
+    <%= f.collection_select :group_id, current_user.groups, :id, :name %>
+  </div>
   <%= f.submit %>
 <% end %>
-<%= link_to "一覧画面に戻る", group_pets_path %>
+<%= link_to "一覧画面に戻る", pets_path %>

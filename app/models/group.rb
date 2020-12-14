@@ -7,7 +7,10 @@ class Group < ApplicationRecord
   has_many :pets, dependent: :destroy
   mount_uploader :icon, ImageUploader
 
-  def add_group_member(user, group)
-    assigns.create(user_id: user.id, group_id: group.id)
+  def assigns_create(user, group)
+    @user = User.find(user.id)
+    @group = Group.find(group.id)
+    @group.members << @user
   end
+
 end
