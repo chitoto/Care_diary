@@ -11,24 +11,33 @@
 
   <body>
     <div class="heder">
-      <% if user_signed_in? %>
-        <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        <li>
-          <p><%= link_to '新しくグループを作成', new_group_path %></p>
+      <ul class="nav justify-content-end">
+        <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
+          <div class="dropdown-menu">
+            <%= link_to "マイページ", user_path(current_user.id), class: 'dropdown-item' %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
         </li>
-        <li>
-          <h5>グループを選んでください</h5>
-          <% (current_user.groups.blank? ? group.where(id: 1) : current_user.groups).each do |group| %>
-            <%= link_to group_path(group) do %>
-              <p><%= group.name %></p>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">グループ</a>
+          <div class="dropdown-menu">
+            <%= link_to '新しくグループを作成', new_group_path %>
+            <div class="dropdown-divider"></div>
+            <p >グループを選んでください</p>
+            <% (current_user.groups.blank? ? group.where(id: 1) : current_user.groups).each do |group| %>
+              <%= link_to group_path(group) ,class: 'dropdown-item' do %>
+                <%= group.name %>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </li>
-      <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-      <% end %>
+        <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path, class: 'dropdown-item' %></li>
+        <li><%= link_to 'サインアップ', new_user_registration_path, class: 'dropdown-item' %></li>
+        <% end %>
+      </ul>
 
       <% if notice %>
         <p class="alert alert-notice"><%= notice %></p>
