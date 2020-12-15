@@ -1,0 +1,20 @@
+<h1>Pets#show</h1>
+<p>飼い主グループ名：<%= @pet.group.name %></p><%= link_to "ペット登録", new_pet_path %>
+
+<p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
+<p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
+<p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
+<p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
+<p><%= t("activerecord.attributes.pet.icon") %>: <%= image_tag @pet.icon.url %></p>
+<p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
+
+<%= link_to "一覧画面(group#show)に戻る", group_path(@pet.group_id) %>
+
+<%= link_to "介護記録する", new_pet_wrap_path(@pet) %>
+<div class="comments＿table">
+  <h2>コメントテーブル</h2>
+  <div id="comments_area">
+    <%= render partial: 'comments/index', locals: { comments: @comments, pet: @pet } %>
+  </div>
+  <%= render partial: 'comments/form', locals: { comment: @comment, pet: @pet } %>
+</div>
