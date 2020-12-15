@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_114302) do
+ActiveRecord::Schema.define(version: 2020_12_15_054312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_12_14_114302) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_assigns_on_group_id"
     t.index ["user_id"], name: "index_assigns_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "pet_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_comments_on_pet_id"
   end
 
   create_table "conditions", force: :cascade do |t|
@@ -139,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_114302) do
 
   add_foreign_key "assigns", "groups"
   add_foreign_key "assigns", "users"
+  add_foreign_key "comments", "pets"
   add_foreign_key "conditions", "wraps"
   add_foreign_key "excretions", "wraps"
   add_foreign_key "groups", "users", column: "owner_id"

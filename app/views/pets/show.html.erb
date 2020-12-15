@@ -11,3 +11,11 @@
 <%= link_to "一覧画面に戻る", pets_path %>
 
 <%= link_to "介護記録する", new_pet_wrap_path(@pet) %>
+
+<div id="comments_area">
+  <%= render partial: 'comments/index', locals: { comments: @comments, pet: @pet } %>
+</div>
+  
+  <%= render partial: 'comments/form', locals: { comment: @comment, pet: @pet } %>
+  <%= link_to '編集', edit_pet_path(@pet) %> |
+  <%= link_to '戻る', pets_path %>

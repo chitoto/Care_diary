@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   end
 
   resources :pets do
-    resources :wraps do
-    end
+    resources :comments
+    resources :wraps
   end
 
 end
