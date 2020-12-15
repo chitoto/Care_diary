@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  get 'groups/index'
-  get 'groups/new'
-  get 'groups/show'
-  get 'groups/edit'
-  get 'users/show'
+
   root to: "groups#index"
 
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    registrations: "users/registrations",
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :users, only: [:show]
 
