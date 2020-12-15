@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_130718) do
+ActiveRecord::Schema.define(version: 2020_12_15_180924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 2020_12_15_130718) do
     t.index ["group_id"], name: "index_pets_on_group_id"
   end
 
+  create_table "sns_credentials", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -149,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_130718) do
   add_foreign_key "meals", "wraps"
   add_foreign_key "medicines", "wraps"
   add_foreign_key "pets", "groups"
+  add_foreign_key "sns_credentials", "users"
   add_foreign_key "walks", "wraps"
   add_foreign_key "wraps", "pets"
 end
