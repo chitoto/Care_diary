@@ -1,2 +1,8 @@
 <h1>Wraps#show</h1>
-<p>Find me in app/views/wraps/show.html.erb</p>
+<p><%= @wrap.pet.name %>の記録</p>
+
+<p><%= t("activerecord.attributes.wrap.precaution_title") %>: <%= @wrap.precaution_title %></p>
+<p><%= t("activerecord.attributes.wrap.precaution_content") %>: <%= @wrap.precaution_content %></p>
+<p><%= t("activerecord.attributes.wrap.date_record") %>: <%= @wrap.date_record %></p>
+
+<%= link_to "一覧画面に戻る", pet_wraps_path %>

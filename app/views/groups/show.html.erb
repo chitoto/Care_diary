@@ -1,0 +1,80 @@
+<h1>Groups#show</h1>
+
+<%= link_to "新しくグループ作成", new_group_path %><%= link_to "グループ一覧", groups_path %>
+
+<br>
+
+<table>
+  <td>
+    <% if @group.icon.blank? %>
+      <%= image_tag 'icon.png', width:'30px', height:'30px', alt: 'No image' %>
+    <% else %>
+    <%= image_tag @group.icon.url %>
+    <% end %>
+  </td>
+  <td><%= @group.name %></td>
+  <td>グループ管理者：<%= @group_owner.name %></td>
+  <% unless @group.members.include?(current_user) %>
+    <td>
+      <%= button_to "グループに入る", {controller: :groups, action: :add_member, group: @group},{method: :post} %>
+    </td>
+  <% end %>
+</table>
+
+<% if @group.members.include?(current_user) %>
+  <table>
+    <h3>グループメンバー一覧</h3>
+    <% @group.members.each do |menber| %>
+      <tr>
+        <th>名前</th>
+        <th>email</th>
+        <th><%= t("activerecord.attributes.user.icon") %></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= menber.name %></td>
+        <td><%= menber.email %></td>
+        <% if menber.icon.blank? %>
+          <td><%= image_tag 'icon.png', alt: 'No image' %></td>
+        <% else %>
+          <td><%= image_tag menber.icon.url %></td>
+        <% end %>
+      <% end %>
+  </table>
+  <table>
+    <h3>グループに関連づけたペット一覧</h3>
+    <%= link_to "新しくペットを登録する", new_pet_path %>
+    <% if @group.pets.blank? %>
+      <p>ペットの登録がありません、ペットを登録してください</p>
+    <% else %>
+      <% @group.pets.each do |pet| %>
+      <tr>
+        <th><%= t("activerecord.attributes.pet.name") %></th>
+        <th><%= t("activerecord.attributes.pet.birthday") %></th>
+        <th><%= t("activerecord.attributes.pet.gender") %></th>
+        <th><%= t("activerecord.attributes.pet.species") %></th>
+        <th><%= t("activerecord.attributes.pet.icon") %></th>
+        <th><%= t("activerecord.attributes.pet.memo") %></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= pet.name %></td>
+        <td><%= pet.birthday %></td>
+        <td><%= pet.gender %></td>
+        <td><%= pet.species %></td>
+        <% if pet.icon.blank? %>
+          <td><%= image_tag 'icon.png', alt: 'No image' %></td>
+        <% else %>
+          <td><%= image_tag pet.icon.url %></td>
+        <% end %>
+        <td><%= pet.memo %></td>
+        <td>
+          <%= link_to "詳細", pet_path(pet.id) %>
+          <%= link_to "編集", edit_pet_path(pet.id) %>
+          <%= link_to '削除', pet_path(pet.id), method: :delete %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

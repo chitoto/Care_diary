@@ -1,9 +1,28 @@
 Rails.application.routes.draw do
-  resources :wraps
-  devise_for :users
-  resources :pets
+  get 'groups/index'
+  get 'groups/new'
+  get 'groups/show'
+  get 'groups/edit'
+  get 'users/show'
+  root to: "groups#index"
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+  }
+  resources :users, only: [:show]
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  resources :groups do
+    collection do
+      post 'add_member'
+    end
+  end
+
+  resources :pets do
+    resources :comments
+    resources :wraps
   end
 end

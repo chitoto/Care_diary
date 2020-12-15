@@ -19,8 +19,8 @@ class PetsController < ApplicationController
   end
 
   def show
-    # @comments = @pet.comments
-    # @comment = @pet.comments.build
+    @comments = @pet.comments
+    @comment = @pet.comments.build
   end
 
   def edit

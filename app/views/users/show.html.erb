@@ -1,0 +1,35 @@
+<h1>Users#show</h1>
+<div>
+  <p>ユーザープロフィール</p>
+  <%= link_to "プロフィールの編集", edit_user_registration_path(@user.id) %>
+  <p>名前 : <%= @user.name %></p>
+  <p>メールアドレス : <%= @user.email %></p>
+  <p>アイコン :
+    <% if @user.icon.blank? %>
+      <%= image_tag 'icon.png', width:'30px', height:'30px', alt: 'No image' %>
+    <% else %>
+    <%= image_tag @user.icon.url %>
+    <% end %>
+  </p>
+</div>
+
+<h2>所属しているグループ</h2>
+<% if @user.groups.blank? %>
+  <p>所属グループがありません、グループを作成するか所属するグループを選んでください</p>
+  <%= link_to "グループの作成", new_group_path %>
+<% else %>
+  <div>
+    <% @user.groups.each do |group| %>
+    <table>
+      <tr>
+        <% unless group.icon_url.blank? %>
+          <td><%= image_tag group.icon_url, size: '40x40' %></td>
+        <% end %>
+        <td><%= link_to "#{group.name}", group_path(group.id) %></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+<% end %>
+<h2>所属するグループを選ぶ</h2>
+<%= link_to "グループ一覧", groups_path %>

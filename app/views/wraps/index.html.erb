@@ -1,2 +1,32 @@
 <h1>Wraps#index</h1>
-<p>Find me in app/views/wraps/index.html.erb</p>
+<%= link_to "日付登録する", new_pet_wrap_path %>
+<table>
+  <tr>
+    <th><%= t("activerecord.attributes.wrap.precaution_title") %></th>
+    <th><%= t("activerecord.attributes.wrap.precaution_content") %></th>
+    <th><%= t("activerecord.attributes.wrap.date_record") %></th>
+    <th>Condition数</th>
+    <th>meal数</th>
+    <th>excretion数</th>
+    <th>medicine数</th>
+    <th>walk数</th>
+    <th></th>
+  </tr>
+<% @wraps.each do |wrap| %>
+  <tr>
+    <td><%= wrap.precaution_title %></td>
+    <td><%= wrap.precaution_content %></td>
+    <td><%= wrap.date_record %></td>
+    <td><%= wrap.conditions.length %></td>
+    <td><%= wrap.meals.length %></td>
+    <td><%= wrap.excretions.length %></td>
+    <td><%= wrap.medicines.length %></td>
+    <td><%= wrap.walks.length %></td>
+    <td>
+      <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id) %>
+      <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id) %>
+      <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
