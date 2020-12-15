@@ -35,8 +35,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to '新しくグループを作成', new_group_path %>
               <div class="dropdown-divider"></div>
-              <%= link_to "#{current_user.name}のグループ一覧", groups_path, class: 'dropdown-item' %>
-              <div class="dropdown-divider"></div>
+              <%= "#{current_user.name}のグループ一覧" %>
               <% current_user.groups.each do |group| %>
                 <%= link_to "#{group.name}", group_path(group), class: 'dropdown-item' %>
               <% end %>
