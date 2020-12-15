@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_114302) do
     t.bigint "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date_record"], name: "index_wraps_on_date_record"
+    t.index ["date_record"], name: "index_wraps_on_date_record", unique: true
     t.index ["pet_id"], name: "index_wraps_on_pet_id"
   end
 
