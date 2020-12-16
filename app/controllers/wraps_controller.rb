@@ -2,7 +2,7 @@ class WrapsController < ApplicationController
   before_action :set_wrap, only: [:show, :edit, :update, :destroy]
 
   def index
-    @wraps = Wrap.all
+    @wraps = Wrap.all.order(date_record: :desc)
   end
 
   def new
@@ -29,10 +29,15 @@ class WrapsController < ApplicationController
   end
 
   def edit
+    @wrap.conditions.build if @wrap.conditions.blank?
+    @wrap.meals.build if @wrap.meals.blank?
+    @wrap.excretions.build if @wrap.excretions.blank?
+    @wrap.medicines.build if @wrap.medicines.blank?
+    @wrap.walks.build if @wrap.walks.blank?
   end
 
   def update
-    if @wrap.update(wrap_params)
+    if @wrap.update(update_wrap_params)
       redirect_to pet_wraps_path(@wrap.pet_id), notice: "介護記録を編集しました！"
     else
       render :edit
@@ -48,11 +53,21 @@ class WrapsController < ApplicationController
 
   def wrap_params
     params.require(:wrap).permit(:id, :precaution_title, :precaution_content, :date_record, :pet_id,
+    conditions_attributes: [ :id, :start_time, :weight, :temperature, :memo ],
+    meals_attributes: [ :id, :start_time, :shape, :amount, :memo ],
+    excretions_attributes: [ :id, :start_time, :shape, :amount, :smell, :memo ],
+    medicines_attributes: [ :id, :start_time, :shape, :memo ],
+    walks_attributes: [ :id, :start_time, :how_many, :memo ]
+    )
+  end
+
+  def update_wrap_params
+    params.require(:wrap).permit(:id, :precaution_title, :precaution_content, :date_record, :pet_id,
     conditions_attributes: [ :id, :start_time, :weight, :temperature, :memo, :_destroy ],
     meals_attributes: [ :id, :start_time, :shape, :amount, :memo, :_destroy ],
     excretions_attributes: [ :id, :start_time, :shape, :amount, :smell, :memo, :_destroy ],
     medicines_attributes: [ :id, :start_time, :shape, :memo, :_destroy ],
-    medicines_attributes: [ :id, :start_time, :how_many, :memo, :_destroy ]
+    walks_attributes: [ :id, :start_time, :how_many, :memo, :_destroy ]
     )
   end
 
