@@ -5,7 +5,13 @@
 <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
 <p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
 <p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
-<p><%= t("activerecord.attributes.pet.icon") %>: <%= image_tag @pet.icon.url %></p>
+<p><%= t("activerecord.attributes.pet.icon") %>:
+  <% if @pet.icon.blank? %>
+  <td><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
+  <% else %>
+  <td><%=image_tag @pet.icon.url %></td>
+  <% end %>
+</p>
 <p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
 
 <%= link_to "一覧画面(group#show)に戻る", group_path(@pet.group_id) %>
