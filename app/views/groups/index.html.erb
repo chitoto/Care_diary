@@ -12,6 +12,7 @@
       <% else %>
       <td><%=image_tag group.icon.url %></td>
       <% end %>
+      <td>管理者：<%= group.owner.name %></td>
       <td>
         <%= link_to "詳細", group_path(group.id) %>
         <% if current_user == group.owner %>

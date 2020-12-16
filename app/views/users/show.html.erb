@@ -2,7 +2,7 @@
 <div>
   <p>ユーザープロフィール</p>
   <%= link_to "プロフィールの編集", edit_user_registration_path(@user.id) %>
-  <p>名前 : <%= @user.name %></p>
+  <p>名前 : <%= @user.name.truncate(30) %></p>
   <p>メールアドレス : <%= @user.email %></p>
   <p>アイコン :
     <% if @user.icon.blank? %>
@@ -25,7 +25,7 @@
         <% unless group.icon_url.blank? %>
           <td><%= image_tag group.icon_url, size: '40x40' %></td>
         <% end %>
-        <td><%= link_to "#{group.name}", group_path(group.id) %></td>
+        <td><%= link_to "#{group.name}".truncate(30), group_path(group.id) %></td>
       </tr>
     </table>
     <% end %>
