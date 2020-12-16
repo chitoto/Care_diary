@@ -1,5 +1,5 @@
 class Wrap < ApplicationRecord
-  validates :date_record, presence: true
+  validates :date_record, presence: true, uniqueness: true
   validates :precaution_title, length: { maximum: 255 }
   validates :precaution_content, length: { maximum: 255 }
 

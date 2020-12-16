@@ -22,7 +22,29 @@
     <%= f.date_field :date_record %>
   </div>
 
-        <div>
+
+
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-condition-tab" data-toggle="pill" href="#pills-condition" role="tab" aria-controls="pills-condition" aria-selected="true">condition</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-meal-tab" data-toggle="pill" href="#pills-meal" role="tab" aria-controls="pills-meal" aria-selected="false">meal</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-excretion-tab" data-toggle="pill" href="#pills-excretion" role="tab" aria-controls="pills-excretion" aria-selected="false">excretion</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-medicine-tab" data-toggle="pill" href="#pills-medicine" role="tab" aria-controls="pills-medicine" aria-selected="false">medicine</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-walk-tab" data-toggle="pill" href="#pills-walk" role="tab" aria-controls="pills-walk" aria-selected="false">walk</a>
+  </li>
+</ul>
+<!-- タブ-content -->
+<div class="tab-content" id="pills-tabContent">
+
+        <div class="tab-pane fade show active" id="pills-condition" role="tabpanel" aria-labelledby="pills-condition-tab">
           <h2>condition</h2>
           <%= f.fields_for :conditions do |condition| %>
             <div class="field">
@@ -50,7 +72,7 @@
           <% end %>
         </div>
 
-        <div>
+        <div class="tab-pane fade" id="pills-meal" role="tabpanel" aria-labelledby="pills-meal-tab">
           <h2>meal</h2>
           <%= f.fields_for :meals do |meal| %>
             <div class="field">
@@ -78,7 +100,7 @@
           <% end %>
         </div>
 
-        <div>
+        <div class="tab-pane fade" id="pills-excretion" role="tabpanel" aria-labelledby="pills-excretion-tab">
           <h2>excretion</h2>
           <%= f.fields_for :excretions do |excretion| %>
             <div class="field">
@@ -110,7 +132,7 @@
           <% end %>
         </div>
 
-        <div>
+        <div class="tab-pane fade" id="pills-medicine" role="tabpanel" aria-labelledby="pills-medicine-tab">
           <h2>medicine</h2>
           <%= f.fields_for :medicines do |medicine| %>
             <div class="field">
@@ -134,7 +156,7 @@
           <% end %>
         </div>
 
-        <div>
+        <div class="tab-pane fade" id="pills-walk" role="tabpanel" aria-labelledby="pills-walk-tab">
           <h2>walk</h2>
           <%= f.fields_for :walks do |walk| %>
             <div class="field">
@@ -157,7 +179,8 @@
             <% end %>
           <% end %>
         </div>
-
+</div>
+<!-- タブ -->
 
 <br>
 <div>
