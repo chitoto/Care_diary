@@ -9,11 +9,11 @@
     </ul>
   </div>
 <% end %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :icon %>
     <%= image_tag(@group.icon.url) if @group.icon && @group.icon.url %>
     <%= f.file_field :icon %>
