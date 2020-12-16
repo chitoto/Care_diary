@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 255 }
 
   mount_uploader :icon, ImageUploader
 

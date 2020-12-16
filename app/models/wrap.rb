@@ -1,5 +1,8 @@
 class Wrap < ApplicationRecord
   validates :date_record, presence: true
+  validates :precaution_title, length: { maximum: 255 }
+  validates :precaution_content, length: { maximum: 255 }
+
   belongs_to :pet
 
   has_many :conditions,  dependent: :destroy
