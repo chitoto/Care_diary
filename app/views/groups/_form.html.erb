@@ -9,6 +9,7 @@
     </ul>
   </div>
 <% end %>
+<div class="form_wrapper">
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -19,6 +20,10 @@
     <%= f.file_field :icon %>
     <%= f.hidden_field :icon_cache %>
   </div>
-  <%= f.submit '登録する' %>
+  <div class="form-group">
+    <%= f.submit '登録する', class: "btn btn-primary" %>
+  </div>
 <% end %>
-<%= link_to "一覧画面に戻る", groups_path %>
+</div>
+<br>
+<%= link_to "一覧画面に戻る", groups_path, class: "btn btn-outline-info" %>

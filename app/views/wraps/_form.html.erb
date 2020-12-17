@@ -9,39 +9,48 @@
     </ul>
   </div>
 <% end %>
-
-  <div class="form-group">
-    <%= f.label :precaution_title %>
-    <%= f.text_field :precaution_title, placeholder: "変更タイトル" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :precaution_content %>
-    <%= f.text_field :precaution_content, placeholder: "変更コンテンツ" %>
-  </div>
+<div class="contents_wrapper">
+  <h2>日別介護記録form</h2>
+  <p>※作成日は必ず入力してください！</p>
   <div class="form-group">
     <%= f.label :date_record %>
     <%= f.date_field :date_record %>
   </div>
 
+<br>
 
 
-  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="pills-condition-tab" data-toggle="pill" href="#pills-condition" role="tab" aria-controls="pills-condition" aria-selected="true">condition</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-meal-tab" data-toggle="pill" href="#pills-meal" role="tab" aria-controls="pills-meal" aria-selected="false">meal</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-excretion-tab" data-toggle="pill" href="#pills-excretion" role="tab" aria-controls="pills-excretion" aria-selected="false">excretion</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-medicine-tab" data-toggle="pill" href="#pills-medicine" role="tab" aria-controls="pills-medicine" aria-selected="false">medicine</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-walk-tab" data-toggle="pill" href="#pills-walk" role="tab" aria-controls="pills-walk" aria-selected="false">walk</a>
-  </li>
-</ul>
+  <div class="form-group">
+    <%= f.label :precaution_title %>
+    <%= f.text_field :precaution_title, placeholder: "その日の注意タイトル" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :precaution_content %>
+    <%= f.text_field :precaution_content, placeholder: "その日の注意コンテンツ" %>
+  </div>
+</div>
+
+<div class="button_wrapper">
+  <ul class="nav nav-pills" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-condition-tab" data-toggle="pill" href="#pills-condition" role="tab" aria-controls="pills-condition" aria-selected="true">condition</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-meal-tab" data-toggle="pill" href="#pills-meal" role="tab" aria-controls="pills-meal" aria-selected="false">meal</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-excretion-tab" data-toggle="pill" href="#pills-excretion" role="tab" aria-controls="pills-excretion" aria-selected="false">excretion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-medicine-tab" data-toggle="pill" href="#pills-medicine" role="tab" aria-controls="pills-medicine" aria-selected="false">medicine</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-walk-tab" data-toggle="pill" href="#pills-walk" role="tab" aria-controls="pills-walk" aria-selected="false">walk</a>
+    </li>
+  </ul>
+</div>
+
+<div class="contents_wrapper" id="nested">
 <!-- タブ-content -->
 <div class="tab-content" id="pills-tabContent">
 
@@ -182,7 +191,7 @@
         </div>
 </div>
 <!-- タブ -->
-
+</div>
 <br>
 <div>
   <%= f.submit '登録する' %>

@@ -1,32 +1,45 @@
 <h1>Wraps#index</h1>
 <%= link_to "日付登録する", new_pet_wrap_path %>
-<table>
-  <tr>
-    <th><%= t("activerecord.attributes.wrap.precaution_title") %></th>
-    <th><%= t("activerecord.attributes.wrap.precaution_content") %></th>
-    <th><%= t("activerecord.attributes.wrap.date_record") %></th>
-    <th>Condition数</th>
-    <th>meal数</th>
-    <th>excretion数</th>
-    <th>medicine数</th>
-    <th>walk数</th>
-    <th></th>
-  </tr>
 <% @wraps.each do |wrap| %>
-  <tr>
-    <td><%= wrap.precaution_title %></td>
-    <td><%= wrap.precaution_content %></td>
-    <td><%= wrap.date_record %></td>
-    <td><%= wrap.conditions.length %></td>
-    <td><%= wrap.meals.length %></td>
-    <td><%= wrap.excretions.length %></td>
-    <td><%= wrap.medicines.length %></td>
-    <td><%= wrap.walks.length %></td>
-    <td>
-      <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id) %>
-      <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id) %>
-      <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete %>
-    </td>
-  </tr>
+
+<div class="index_table">
+
+  <table>
+    <tr>
+      <h3><%= l wrap.date_record, format: :long %>の記録</h3>
+        <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id) %>
+        <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id) %>
+        <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete %>
+    </tr>
+    <% if wrap.precaution_title.present? %>
+    <tr>
+      <th><%= t("activerecord.attributes.wrap.precaution_title") %></th>
+      <td><%= wrap.precaution_title %></td>
+    </tr>
+    <% end %>
+    <% if wrap.precaution_content.present? %>
+    <tr>
+      <th><%= t("activerecord.attributes.wrap.precaution_content") %></th>
+      <td><%= wrap.precaution_content %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <th>Condition</th>
+      <th>meal</th>
+      <th>excretion</th>
+      <th>medicine</th>
+      <th>walk</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><%= wrap.conditions.length %></td>
+      <td><%= wrap.meals.length %></td>
+      <td><%= wrap.excretions.length %></td>
+      <td><%= wrap.medicines.length %></td>
+      <td><%= wrap.walks.length %></td>
+
+    </tr>
+
+  </table>
+</div>
 <% end %>
-</table>

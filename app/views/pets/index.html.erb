@@ -1,33 +1,45 @@
-<h1>Pets#index</h1>
-
-<%= link_to "ペットを登録する", new_pet_path %>
-<table>
-  <tr>
-    <th><%= t("activerecord.attributes.pet.name") %></th>
-    <th><%= t("activerecord.attributes.pet.birthday") %></th>
-    <th><%= t("activerecord.attributes.pet.gender") %></th>
-    <th><%= t("activerecord.attributes.pet.species") %></th>
-    <th><%= t("activerecord.attributes.pet.icon") %></th>
-    <th><%= t("activerecord.attributes.pet.memo") %></th>
-    <th></th>
-  </tr>
-<% @pets.each do |pet| %>
-  <tr>
-    <td><%= pet.name %></td>
-    <td><%= pet.birthday %></td>
-    <td><%= pet.gender %></td>
-    <td><%= pet.species %></td>
-    <% if pet.icon.blank? %>
-      <td><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
-    <% else %>
-    <td><%=image_tag pet.icon.url %></td>
-    <% end %>
-    <td><%= pet.memo %></td>
-    <td>
-      <%= link_to "詳細", pet_path(pet.id) %>
-      <%= link_to "編集", edit_pet_path(pet.id) %>
-      <%= link_to '削除', pet_path(pet.id), method: :delete %>
-    </td>
-  </tr>
+<% if current_user.admin? %>
+  <h2>全ペット一覧（管理者のみ）</h2>
+  <%= link_to "新しく登録する", new_pet_path, class: "btn btn-primary" %>
+  <% @pets.each do |pet| %>
+    <div class="index_table">
+      <table>
+        <tr>
+          <th><%= t("activerecord.attributes.pet.name") %></th>
+          <th><%= t("activerecord.attributes.pet.birthday") %></th>
+          <th><%= t("activerecord.attributes.pet.gender") %></th>
+          <th><%= t("activerecord.attributes.pet.species") %></th>
+          <% if pet.icon.blank? %>
+            <td rowspan="2"><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
+          <% else %>
+            <td rowspan="2"><%=image_tag pet.icon.url %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td><%= pet.name %></td>
+          <td><%= pet.birthday %></td>
+          <td><%= pet.gender %></td>
+          <td><%= pet.species %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.pet.memo") %></th>
+          <td colspan="4" class="text_table"><%= pet.memo %></td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td>
+            <%= link_to "詳細", pet_path(pet.id), class: "btn btn-outline-info" %>
+          </td>
+          <td>
+            <%= link_to "編集", edit_pet_path(pet.id), class: "btn btn-outline-warning" %>
+          </td>
+          <td>
+            <%= link_to '削除', pet_path(pet.id), method: :delete, class: "btn btn-outline-danger" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+<% else %>
+    <h2>管理者権限がありません</h2>
 <% end %>
-</table>

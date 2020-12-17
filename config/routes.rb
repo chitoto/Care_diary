@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :groups do
     collection do
-      post 'add_member'
+      post 'add_menber'
     end
   end
 

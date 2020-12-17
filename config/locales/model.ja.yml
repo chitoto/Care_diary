@@ -8,7 +8,7 @@ ja:
     attributes:
       user:
         name: 名前
-        email: メールアドレス
+        email: メール
         current_password: 現在のパスワード
         password: パスワード
         password_confirmation: 確認用パスワード
@@ -23,9 +23,10 @@ ja:
         species: 種別
         memo: メモ
         icon: アイコン
+        group_id: グループ
       wrap:
-        precaution_title: 変更事項
-        precaution_content: 変更箇所
+        precaution_title: タイトル
+        precaution_content: 詳細
         date_record: 記録日
       wrap/condition:
         start_time: 時間

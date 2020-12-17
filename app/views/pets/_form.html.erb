@@ -9,6 +9,7 @@
     </ul>
   </div>
 <% end %>
+<div class="form_wrapper">
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -17,7 +18,7 @@
     <%= f.label :birthday %>
     <%= f.date_field :birthday %>
   </div>
-  <div class="form-group">
+  <div class="form-check">
     <%= f.label :gender, :男の子 %>
     <%= f.radio_button :gender, "男の子" %>
     &nbsp
@@ -41,11 +42,12 @@
     <%= f.label :memo %>
     <%= f.text_field :memo %>
   </div>
-
   <div class="form-group">
     <%= f.label :group_id %>
     <%= f.collection_select :group_id, current_user.groups, :id, :name %>
   </div>
-  <%= f.submit %>
+  <div class="form-group">
+  <%= f.submit '登録', class: "btn btn-primary" %>
+  </div>
 <% end %>
-<%= link_to "一覧画面に戻る", pets_path %>
+</div>
