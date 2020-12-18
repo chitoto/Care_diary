@@ -12,13 +12,18 @@ class User < ApplicationRecord
   has_many :groups, foreign_key: :owner_id
   has_many :assigns, dependent: :destroy
   has_many :groups, through: :assigns
+  has_many :sns_credentials, dependent: :destroy
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      # deviseのuserカラムに name を追加している場合は以下のコメントアウトも追記します
-      user.name = auth.info.name
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-    end
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.name = auth.info.name
+        user.email = dummy_email(auth)
+        user.password = Devise.friendly_token[0,20]
+      end
   end
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
 end
