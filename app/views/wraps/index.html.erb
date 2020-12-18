@@ -1,26 +1,24 @@
-<h1>Wraps#index</h1>
-<%= link_to "日付登録する", new_pet_wrap_path %>
+<h2><%= t("activerecord.models.wrap") %></h2>
+<%= link_to "新規登録する", new_pet_wrap_path, class: "btn btn-primary" %>
 <% @wraps.each do |wrap| %>
 
 <div class="index_table">
 
   <table>
-    <tr>
-      <h3><%= l wrap.date_record, format: :long %>の記録</h3>
-        <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id) %>
-        <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id) %>
-        <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete %>
-    </tr>
+    <h4><%= l wrap.date_record, format: :long %>の記録</h4>
+    <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id), class: "btn btn-outline-info" %>
+    <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id), class: "btn btn-outline-warning" %>
+    <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete, class: "btn btn-outline-danger" %>
     <% if wrap.precaution_title.present? %>
     <tr>
       <th><%= t("activerecord.attributes.wrap.precaution_title") %></th>
-      <td><%= wrap.precaution_title %></td>
+      <td colspan="4"><%= wrap.precaution_title %></td>
     </tr>
     <% end %>
     <% if wrap.precaution_content.present? %>
     <tr>
       <th><%= t("activerecord.attributes.wrap.precaution_content") %></th>
-      <td><%= wrap.precaution_content %></td>
+      <td colspan="4"><%= wrap.precaution_content %></td>
     </tr>
     <% end %>
     <tr>

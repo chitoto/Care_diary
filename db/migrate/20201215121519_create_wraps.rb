@@ -7,6 +7,6 @@ class CreateWraps < ActiveRecord::Migration[5.2]
       t.references :pet, foreign_key: true
       t.timestamps
     end
-    add_index :wraps, :date_record, unique: true
+    add_index :wraps, :date_record
   end
 end

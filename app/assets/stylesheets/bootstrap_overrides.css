@@ -52,6 +52,7 @@ nav .nav-link:hover {
   margin-top: 5rem;
   width:600px;
   margin-bottom: 5rem;
+  height: 100%;
 }
 .alert{
   text-align: center;
@@ -142,10 +143,10 @@ h1,h2{
 }
 footer {
   background-color: #38D0BC;
+  width: 100%;
   margin-top: 2rem;
-  margin-bottom: 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
   text-align: center;
-  display: fixed-bottom
+  position: absolute;
 }

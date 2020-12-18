@@ -37,10 +37,8 @@
       <% end %>
     </tr>
   </table>
-</div>
-
+<hr>
 <% if @group.members.include?(current_user) %>
-  <div class="index_table">
     <h5>グループメンバー一覧</h5>
     <% @group.members.each do |menber| %>
       <table>

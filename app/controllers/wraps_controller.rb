@@ -1,8 +1,10 @@
 class WrapsController < ApplicationController
   before_action :set_wrap, only: [:show, :edit, :update, :destroy]
+  before_action :group_menber?
 
   def index
-    @wraps = Wrap.all.order(date_record: :desc)
+    @pet = Pet.find(params[:pet_id])
+    @wraps = @pet.wraps.all.order(date_record: :desc)
   end
 
   def new
@@ -74,6 +76,11 @@ class WrapsController < ApplicationController
   def set_wrap
     params[:id] = params[:wrap_id] if params[:id].nil?
     @wrap = Wrap.find(params[:id])
+  end
+
+  def group_menber?
+    @pet = Pet.find(params[:pet_id])
+    current_user == @pet.group.members
   end
 
 end

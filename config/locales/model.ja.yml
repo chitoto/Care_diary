@@ -4,7 +4,7 @@ ja:
       user: ユーザー
       group: グループ
       pet: うちの子
-      wrap: ラップ
+      wrap: 介護記録
     attributes:
       user:
         name: 名前
@@ -16,6 +16,7 @@ ja:
       group:
         name: グループ名
         icon: グループアイコン
+        owner_id: リーダー
       pet:
         name: 名前
         birthday: 誕生日
@@ -28,27 +29,27 @@ ja:
         precaution_title: タイトル
         precaution_content: 詳細
         date_record: 記録日
-      wrap/condition:
+      condition:
         start_time: 時間
         weight: 体重
         temperature: 体温
         memo: メモ
-      wrap/meal:
+      meal:
         start_time: 時間
         shape: 種類
         amount: 量
         memo: メモ
-      wrap/excretion:
+      excretion:
         start_time: 時間
         shape: 種類
         amount: 量
         smell: におい
         memo: メモ
-      wrap/medicine:
+      medicine:
         start_time: 時間
         shape: 種類
         memo: メモ
-      wrap/walk:
+      walk:
         start_time: 時間
         how_many: 実行時間
         memo: メモ
