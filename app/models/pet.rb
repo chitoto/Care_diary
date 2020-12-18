@@ -1,5 +1,8 @@
 class Pet < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :species, length: { maximum: 255 }
+  validates :memo, length: { maximum: 255 }
+
   enum gender: { 男の子:1, 女の子:2, わからない:3 }
   mount_uploader :icon, ImageUploader
 

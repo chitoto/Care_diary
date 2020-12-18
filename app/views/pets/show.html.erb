@@ -1,20 +1,38 @@
-<h1>Pets#show</h1>
-<p>飼い主グループ名：<%= @pet.group.name %></p><%= link_to "ペット登録", new_pet_path %>
-
-<p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
-<p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
-<p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
-<p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
-<p><%= t("activerecord.attributes.pet.icon") %>: <%= image_tag @pet.icon.url %></p>
-<p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
-
-<%= link_to "一覧画面(group#show)に戻る", group_path(@pet.group_id) %>
-
-<%= link_to "介護記録する", new_pet_wrap_path(@pet) %>
-<div class="comments＿table">
-  <h2>コメントテーブル</h2>
-  <div id="comments_area">
-    <%= render partial: 'comments/index', locals: { comments: @comments, pet: @pet } %>
-  </div>
-  <%= render partial: 'comments/form', locals: { comment: @comment, pet: @pet } %>
+<div class="wrapper">
+<h2>うちの子詳細情報</h2>
+<br>
+<%= link_to "他の子を登録", new_pet_path(@pet.group_id), class: "btn btn-primary" %>
+<%= link_to "一覧画面(group#show)に戻る", group_path(@pet.group_id), class: "btn btn-outline-info" %>
 </div>
+<div class="contents_wrapper">
+  <p>飼い主グループ名：<%= @pet.group.name %></p>
+  <div>
+    <%= link_to "介護記録する", pet_wraps_path(@pet), class: "btn btn-primary" %>
+    &nbsp;
+  <% if current_user == @pet.group.owner %>
+    <%= link_to "編集", edit_pet_path(@pet.id), class: "btn btn-outline-warning" %>
+    <%= link_to '削除', pet_path(@pet.id), method: :delete, class: "btn btn-outline-danger" %>
+  <% end %>
+  </div>
+  <br>
+  <p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
+  <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
+  <p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
+  <p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
+  <p><%= t("activerecord.attributes.pet.icon") %>:
+    <% if @pet.icon.blank? %>
+    <td><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
+    <% else %>
+    <td><%=image_tag @pet.icon.url %></td>
+    <% end %>
+  </p>
+  <p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
+  <br>
+</div>
+  <div class="contents_wrapper">
+    <h2>コメントボード</h2>
+    <div id="comments_area">
+      <%= render partial: 'comments/index', locals: { comments: @comments, pet: @pet } %>
+    </div>
+    <%= render partial: 'comments/form', locals: { comment: @comment, pet: @pet } %>
+  </div>

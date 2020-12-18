@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 255 }
 
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id
   has_many :assigns, dependent: :destroy

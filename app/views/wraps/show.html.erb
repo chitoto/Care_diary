@@ -1,8 +1,57 @@
 <h1>Wraps#show</h1>
 <p><%= @wrap.pet.name %>の記録</p>
+<%= link_to "一覧画面に戻る", pet_wraps_path %>
 
 <p><%= t("activerecord.attributes.wrap.precaution_title") %>: <%= @wrap.precaution_title %></p>
 <p><%= t("activerecord.attributes.wrap.precaution_content") %>: <%= @wrap.precaution_content %></p>
 <p><%= t("activerecord.attributes.wrap.date_record") %>: <%= @wrap.date_record %></p>
 
-<%= link_to "一覧画面に戻る", pet_wraps_path %>
+
+<h2>condition</h2>
+<table>
+  <% @wrap.conditions.each do |condition| %>
+    <tr><td><%= condition.start_time %></td></tr>
+    <tr><td><%= condition.weight %></td></tr>
+    <tr><td><%= condition.temperature %></td></tr>
+    <tr><td><%= condition.memo %></td></tr>
+  <% end %>
+</table>
+
+<h2>meal</h2>
+<table>
+  <% @wrap.meals.each do |meal| %>
+    <tr><td><%= meal.start_time %></td></tr>
+    <tr><td><%= meal.shape %></td></tr>
+    <tr><td><%= meal.amount %></td></tr>
+    <tr><td><%= meal.memo %></td></tr>
+  <% end %>
+</table>
+
+<h2>excretion</h2>
+<table>
+  <% @wrap.excretions.each do |excretion| %>
+    <tr><td><%= excretion.start_time %></td></tr>
+    <tr><td><%= excretion.shape %></td></tr>
+    <tr><td><%= excretion.amount %></td></tr>
+    <tr><td><%= excretion.smell %></td></tr>
+    <tr><td><%= excretion.memo %></td></tr>
+  <% end %>
+</table>
+
+<h2>medicine</h2>
+<table>
+  <% @wrap.medicines.each do |medicine| %>
+    <tr><td><%= medicine.start_time %></td></tr>
+    <tr><td><%= medicine.shape %></td></tr>
+    <tr><td><%= medicine.memo %></td></tr>
+  <% end %>
+</table>
+
+<h2>walk</h2>
+<table>
+  <% @wrap.walks.each do |walk| %>
+    <tr><td><%= walk.start_time %></td></tr>
+    <tr><td><%= walk.how_many %></td></tr>
+    <tr><td><%= walk.memo %></td></tr>
+  <% end %>
+</table>

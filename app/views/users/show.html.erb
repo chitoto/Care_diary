@@ -1,35 +1,51 @@
-<h1>Users#show</h1>
-<div>
-  <p>ユーザープロフィール</p>
-  <%= link_to "プロフィールの編集", edit_user_registration_path(@user.id) %>
-  <p>名前 : <%= @user.name %></p>
-  <p>メールアドレス : <%= @user.email %></p>
-  <p>アイコン :
-    <% if @user.icon.blank? %>
-      <%= image_tag 'icon.png', width:'30px', height:'30px', alt: 'No image' %>
-    <% else %>
-    <%= image_tag @user.icon.url %>
-    <% end %>
-  </p>
+<div class="index_table">
+<h2>ユーザープロフィール</h2>
+<%= link_to "プロフィールの編集", edit_user_registration_path(@user.id), class: "btn btn-outline-warning" %>
+<hr>
+  <table>
+    <tr>
+      <td colspan="2"rowspan="2">
+        <% if @user.icon.blank? %>
+          <%= image_tag 'icon.png', width:'100px', height:'100px', alt: 'No image' %>
+        <% else %>
+        <%= image_tag @user.icon.url %>
+        <% end %>
+      </td>
+      <th ><%= t("activerecord.attributes.user.name") %></th>
+      <td colspan="4"><%= @user.name.truncate(30) %></td>
+    </tr>
+    <tr>
+      <th><%= t("activerecord.attributes.user.email") %></th>
+      <td colspan="4"><%= @user.email %></td>
+    </tr>
+  </table>
 </div>
-
+<div class="index_table">
 <h2>所属しているグループ</h2>
+<%= link_to "グループの新規作成", new_group_path, class: "btn btn-primary" %>
+<%= link_to "他のグループ一覧", groups_path, class: "btn btn-outline-info" %>
+<hr>
 <% if @user.groups.blank? %>
   <p>所属グループがありません、グループを作成するか所属するグループを選んでください</p>
-  <%= link_to "グループの作成", new_group_path %>
 <% else %>
   <div>
     <% @user.groups.each do |group| %>
     <table>
       <tr>
-        <% unless group.icon_url.blank? %>
-          <td><%= image_tag group.icon_url, size: '40x40' %></td>
-        <% end %>
-        <td><%= link_to "#{group.name}", group_path(group.id) %></td>
+        <td rowspan="2">
+          <% if group.icon.blank? %>
+            <%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %>
+          <% else %>
+          <%= image_tag group.icon.url %>
+          <% end %>
+        </td>
+        <td><%= group.name.truncate(10) %></td>
+        <td><%= t("activerecord.attributes.group.owner_id") %></td>
+        <td><%= group.owner.name.truncate(10) %></td>
+        <td><%= link_to "詳細", group_path(group.id), class: "btn btn-outline-info" %></td>
       </tr>
     </table>
     <% end %>
   </div>
 <% end %>
-<h2>所属するグループを選ぶ</h2>
-<%= link_to "グループ一覧", groups_path %>
+</div>

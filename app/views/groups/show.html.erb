@@ -1,82 +1,94 @@
-<h1>Groups#show</h1>
-<p>※所属するグループを選んで入るとグループメンバーとペットを表示<br>
+<h2>グループ詳細</h2>
+<p>※「グループに参加」ボタンでグループメンバーとして参加できます！<br>
   ※下のペットを選んで'詳細から介護記録'をするへ！
 </p>
-<%= link_to "新しくグループ作成", new_group_path %><%= link_to "グループ一覧", groups_path %>
+<%= link_to "新しくグループ作成", new_group_path, class: "btn btn-primary" %>
+<%= link_to "グループ一覧へ戻る", groups_path, class: "btn btn-outline-info" %>
 
 <br>
-
-<table>
-  <td>
-    <% if @group.icon.blank? %>
-      <%= image_tag 'icon.png', width:'30px', height:'30px', alt: 'No image' %>
-    <% else %>
-    <%= image_tag @group.icon.url %>
-    <% end %>
-  </td>
-  <td><%= @group.name %></td>
-  <td>グループ管理者：<%= @group_owner.name %></td>
-  <% unless @group.members.include?(current_user) %>
-    <td>
-      <%= button_to "グループに入る", {controller: :groups, action: :add_member, group: @group},{method: :post} %>
-    </td>
-  <% end %>
-</table>
-
-<% if @group.members.include?(current_user) %>
+<div class="index_table">
   <table>
-    <h3>グループメンバー一覧</h3>
-    <% @group.members.each do |menber| %>
-      <tr>
-        <th>名前</th>
-        <th>email</th>
-        <th><%= t("activerecord.attributes.user.icon") %></th>
-        <th></th>
-      </tr>
-      <tr>
-        <td><%= menber.name %></td>
-        <td><%= menber.email %></td>
-        <% if menber.icon.blank? %>
-          <td><%= image_tag 'icon.png', alt: 'No image' %></td>
+    <h5>グループ情報</h5>
+    <hr>
+    <tr>
+      <th>
+        <% if @group.icon.blank? %>
+          <%= image_tag 'icon.png', width:'100px', height:'100px', alt: 'No image' %>
         <% else %>
-          <td><%= image_tag menber.icon.url %></td>
+        <%= image_tag @group.icon.url, width:'100px', height:'100px' %>
         <% end %>
-      <% end %>
-  </table>
-  <table>
-    <h3>グループに関連づけたペット一覧</h3>
-    <%= link_to "新しくペットを登録する", new_pet_path %>
-    <% if @group.pets.blank? %>
-      <p>ペットの登録がありません、ペットを登録してください</p>
-    <% else %>
-      <% @group.pets.each do |pet| %>
-      <tr>
-        <th><%= t("activerecord.attributes.pet.name") %></th>
-        <th><%= t("activerecord.attributes.pet.birthday") %></th>
-        <th><%= t("activerecord.attributes.pet.gender") %></th>
-        <th><%= t("activerecord.attributes.pet.species") %></th>
-        <th><%= t("activerecord.attributes.pet.icon") %></th>
-        <th><%= t("activerecord.attributes.pet.memo") %></th>
-        <th></th>
-      </tr>
-      <tr>
-        <td><%= pet.name %></td>
-        <td><%= pet.birthday %></td>
-        <td><%= pet.gender %></td>
-        <td><%= pet.species %></td>
-        <% if pet.icon.blank? %>
-          <td><%= image_tag 'icon.png', alt: 'No image' %></td>
-        <% else %>
-          <td><%= image_tag pet.icon.url %></td>
+      </th>
+      <th class="text_table"><%= @group.name %></th>
+    </tr>
+    <tr>
+      <td class="text_table">
+        グループ管理者：<%= @group.owner.name %>
+      </td>
+      <td>
+        <% if current_user == @group.owner %>
+          <%= link_to "編集", edit_group_path(@group.id), class: "btn btn-outline-warning" %>
+          <%= link_to '削除', group_path(@group.id), method: :delete, class: "btn btn-outline-danger" %>
         <% end %>
-        <td><%= pet.memo %></td>
+      </td>
+      <% unless @group.members.include?(current_user) %>
         <td>
-          <%= link_to "詳細", pet_path(pet.id) %>
-          <%= link_to "編集", edit_pet_path(pet.id) %>
-          <%= link_to '削除', pet_path(pet.id), method: :delete %>
+          <%= button_to "グループに参加", {controller: :groups, action: :add_menber, group: @group},{method: :post, class: "btn btn-primary"} %>
         </td>
-      </tr>
       <% end %>
-    <% end %>
+    </tr>
   </table>
-<% end %>
+<hr>
+<% if @group.members.include?(current_user) %>
+    <h5>グループメンバー一覧</h5>
+    <% @group.members.each do |menber| %>
+      <table>
+        <hr>
+        <tr>
+          <% if menber.icon.blank? %>
+            <td colspan="2" rowspan="2"><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
+          <% else %>
+            <td colspan="2"  rowspan="2"><%= image_tag menber.icon.url, width:'50px', height:'50px' %></td>
+          <% end %>
+          <th><%= t("activerecord.attributes.user.name") %></th>
+          <td colspan="5" class="text_table"><%= menber.name %></td>
+        </tr>
+        <tr>
+          <th><%= t("activerecord.attributes.user.email") %></th>
+          <td colspan="5" class="text_table"><%= menber.email %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+  <div class="index_table end_table">
+    <h5>グループの子どもたち一覧</h5>
+    <br>
+    <%= link_to "新しく登録する", new_pet_path(group_id: @group), class: "btn btn-primary" %>
+    <% @group.pets.each do |pet| %>
+      <table>
+        <hr>
+        <% if @group.pets.blank? %>
+          <p>登録がありません、お世話したい子を登録してください</p>
+        <% else %>
+          <tr>
+          <% if pet.icon.blank? %>
+            <td rowspan="2"><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
+          <% else %>
+            <td rowspan="2"><%= image_tag pet.icon.url, width:'50px', height:'50px' %></td>
+          <% end %>
+          <th><%= t("activerecord.attributes.pet.name") %></th>
+          <th colspan="3"><%= t("activerecord.attributes.pet.species") %></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td class="text_area"><%= pet.name %></td>
+          <td colspan="3" class="text_area"><%= pet.species %></td>
+          <td>
+            <%= link_to "詳細", pet_path(pet.id), class: "btn btn-outline-info" %>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
+</div>

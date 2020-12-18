@@ -1,19 +1,20 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :group_owner?, only: [:edit, :update, :destroy]
 
   def index
     @groups = Group.all.order(owner_id: :desc)
   end
 
   def show
-    @group_owner = User.find(@group.owner_id)
   end
 
   def new
     @group = Group.new
   end
 
-  def edit; end
+  def edit
+  end
 
   def create
     @group = Group.new(group_params)
@@ -41,7 +42,7 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: 'グループを削除しました'
   end
 
-  def add_member
+  def add_menber
     group_id = params[:group]
     @group = Group.find(group_id)
     @group.assigns_create(current_user, @group)
@@ -56,6 +57,10 @@ class GroupsController < ApplicationController
 
   def group_params
     params.fetch(:group, {}).permit( :name, :icon, :icon_cache, :owner_id)
+  end
+
+  def group_owner?
+    current_user == @group.owner
   end
 
 end

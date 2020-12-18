@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :admin?, only: [:index]
 
   def index
     @pets = Pet.all
@@ -47,6 +48,10 @@ class PetsController < ApplicationController
 
   def set_pet
     @pet = Pet.find(params[:id])
+  end
+
+  def admin?
+    current_user.admin?
   end
 
 end
