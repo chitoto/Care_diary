@@ -1,9 +1,8 @@
 <h2><%= t("activerecord.models.wrap") %></h2>
 <%= link_to "新規登録する", new_pet_wrap_path, class: "btn btn-primary" %>
+<%= link_to "うちの子詳細に戻る", pet_path(params[:pet_id]), class: "btn btn-outline-info" %>
 <% @wraps.each do |wrap| %>
-
 <div class="index_table">
-
   <table>
     <h4><%= l wrap.date_record, format: :long %>の記録</h4>
     <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id), class: "btn btn-outline-info" %>
@@ -22,11 +21,11 @@
     </tr>
     <% end %>
     <tr>
-      <th>Condition</th>
-      <th>meal</th>
-      <th>excretion</th>
-      <th>medicine</th>
-      <th>walk</th>
+      <th><%= t("activerecord.attributes.conditions") %></th>
+      <th><%= t("activerecord.attributes.meals") %></th>
+      <th><%= t("activerecord.attributes.excretions") %></th>
+      <th><%= t("activerecord.attributes.medicines") %></th>
+      <th><%= t("activerecord.attributes.walks") %></th>
       <th></th>
     </tr>
     <tr>
@@ -35,9 +34,7 @@
       <td><%= wrap.excretions.length %></td>
       <td><%= wrap.medicines.length %></td>
       <td><%= wrap.walks.length %></td>
-
     </tr>
-
   </table>
 </div>
 <% end %>

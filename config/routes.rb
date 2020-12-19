@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+  root to: "groups#index"
   get 'static_pages/home'
   get 'static_pages/about'
-  root to: "groups#index"
-
+  
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
