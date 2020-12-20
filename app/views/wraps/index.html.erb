@@ -8,7 +8,7 @@
 
   <% wraps.each do |wrap| %>
     <div>
-      <%= link_to wrap.start_time, pet_wraps_path %>
+      <%= link_to "●", pet_wrap_path(wrap.pet_id, wrap.id) %>
     </div>
   <% end %>
 <% end %>
