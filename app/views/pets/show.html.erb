@@ -1,33 +1,48 @@
 <div class="wrapper">
 <h2>うちの子詳細情報</h2>
 <br>
-<%= link_to "他の子を登録", new_pet_path(@pet.group_id), class: "btn btn-primary" %>
+<%= link_to "他の子を登録", new_pet_path(group_id: @pet.group_id), class: "btn btn-primary" %>
 <%= link_to "グループ詳細へ戻る", group_path(@pet.group_id), class: "btn btn-outline-info" %>
 </div>
-<div class="contents_wrapper">
-  <p>飼い主グループ名：<%= @pet.group.name %></p>
-  <div>
-    <%= link_to "介護記録する", pet_wraps_path(@pet.id), class: "btn btn-primary" %>
-    &nbsp;
-  <% if current_user == @pet.group.owner %>
-    <%= link_to "編集", edit_pet_path(@pet.id), class: "btn btn-outline-warning" %>
-    <%= link_to '削除', pet_path(@pet.id), method: :delete, class: "btn btn-outline-danger" %>
-  <% end %>
-  </div>
-  <br>
-  <p><%= t("activerecord.attributes.pet.name") %>: <%= @pet.name %></p>
-  <p><%= t("activerecord.attributes.pet.birthday") %>: <%= @pet.birthday %></p>
-  <p><%= t("activerecord.attributes.pet.gender") %>: <%= @pet.gender %></p>
-  <p><%= t("activerecord.attributes.pet.species") %>: <%= @pet.species %></p>
-  <p><%= t("activerecord.attributes.pet.icon") %>:
-    <% if @pet.icon.blank? %>
-    <td><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
-    <% else %>
-    <td><%=image_tag @pet.icon.url %></td>
-    <% end %>
-  </p>
-  <p><%= t("activerecord.attributes.pet.memo") %>: <%= @pet.memo %></p>
-  <br>
+<div class="contents_wrapper index_table">
+  <h5 class="text_table">飼い主グループ名：<%= @pet.group.name %></h5>
+  <hr>
+    <table>
+    <tr>
+      <td colspan="5"><%= link_to "介護記録する", pet_wraps_path(@pet.id), class: "btn btn-primary" %></td>
+      <% if current_user == @pet.group.owner %>
+        <td><%= link_to "編集", edit_pet_path(@pet.id), class: "btn btn-outline-warning" %></td>
+        <td><%= link_to '削除', pet_path(@pet.id), method: :delete, class: "btn btn-outline-danger" %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td rowspan="3" colspan="2">
+        <% if @pet.icon.blank? %>
+        <%= image_tag 'icon.png', width:'100px', height:'100px', alt: 'No image' %>
+        <% else %>
+        <%=image_tag @pet.icon.url, width:'100px', height:'100px', alt: 'icon' %>
+        <% end %>
+      </td>
+      <th><%= t("activerecord.attributes.pet.name") %>:</th>
+      <td class="text_table" colspan="4"><%= @pet.name %></td>
+    </tr>
+    <tr>
+      <th><%= t("activerecord.attributes.pet.birthday") %>:</th>
+      <td colspan="2"><%= @pet.birthday %></td>
+      <th><%= t("activerecord.attributes.pet.gender") %>:</th>
+      <td><%= @pet.gender %></td>
+    </tr>
+    <tr>
+      <th><%= t("activerecord.attributes.pet.species") %>:</th>
+      <td colspan="4"><%= @pet.species %></td>
+    </tr>
+    <tr>
+      <th><%= t("activerecord.attributes.pet.memo") %></th>
+    </tr>
+    <tr>
+      <td><%= @pet.memo %></td>
+    </tr>
+  </table>
 </div>
   <div class="contents_wrapper">
     <h2>コメントボード</h2>

@@ -4,7 +4,7 @@ class WrapsController < ApplicationController
 
   def index
     @pet = Pet.find(params[:pet_id])
-    @wraps = @pet.wraps.all.order(date_record: :desc)
+    @wraps = @pet.wraps.includes(:conditions).all.order(date_record: :desc)
   end
 
   def new
@@ -23,7 +23,11 @@ class WrapsController < ApplicationController
     if @wrap.save
       redirect_to pet_wraps_path(@wrap.pet_id), notice: "介護記録を登録しました！"
     else
-      redirect_to new_pet_wrap_path(@wrap.pet_id), notice: "介護記録の登録に失敗しました！"
+      if @wrap[:date_record].blank?
+        redirect_to new_pet_wrap_path(@wrap.pet_id), notice: "記録日が入力されていません！"
+      else
+        redirect_to new_pet_wrap_path(@wrap.pet_id), notice: "介護記録の登録に失敗しました！"
+      end
     end
   end
 
@@ -31,11 +35,11 @@ class WrapsController < ApplicationController
   end
 
   def edit
-    @wrap.conditions.build if @wrap.conditions.blank?
-    @wrap.meals.build if @wrap.meals.blank?
-    @wrap.excretions.build if @wrap.excretions.blank?
-    @wrap.medicines.build if @wrap.medicines.blank?
-    @wrap.walks.build if @wrap.walks.blank?
+    @wrap.conditions.build
+    @wrap.meals.build
+    @wrap.excretions.build
+    @wrap.medicines.build
+    @wrap.walks.build
   end
 
   def update

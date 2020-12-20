@@ -155,3 +155,9 @@ footer {
   padding: 1rem 1rem;
   margin-bottom: 5rem;
 }
+.comment{
+  text-decoration: none;
+  height: 100%;
+  text-align: left;
+  overflow-wrap: break-word;
+}
