@@ -1,6 +1,17 @@
 <h2><%= t("activerecord.models.wrap") %></h2>
+<br>
 <%= link_to "新規登録する", new_pet_wrap_path, class: "btn btn-primary" %>
 <%= link_to "うちの子詳細に戻る", pet_path(params[:pet_id]), class: "btn btn-outline-info" %>
+<br><br>
+<%= month_calendar events: @wraps do |date, wraps| %>
+  <%= date.day %>
+
+  <% wraps.each do |wrap| %>
+    <div>
+      <%= link_to wrap.start_time, pet_wraps_path %>
+    </div>
+  <% end %>
+<% end %>
 <% @wraps.each do |wrap| %>
 <div class="index_table">
   <table>
@@ -37,13 +48,4 @@
     </tr>
   </table>
 </div>
-<% end %>
-<%= month_calendar events: @wraps do |date, wraps| %>
-  <%= date.day %>
-
-  <% wraps.each do |wrap| %>
-    <div>
-      <%= link_to wrap.start_time, pet_wraps_path %>
-    </div>
-  <% end %>
 <% end %>
