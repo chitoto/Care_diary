@@ -5,7 +5,7 @@ ja:
       group: グループ
       pet: うちの子
       wrap: 介護記録
-      condition: 身体
+      condition: 体調
       meal: ごはん
       excretion: 排泄
       medicine: お薬
@@ -33,7 +33,7 @@ ja:
       wrap:
         precaution_title: 項目
         precaution_content: 内容
-        date_record: 記録日
+        start_time: 記録日
       condition:
         start_time: 時間
         weight: 体重

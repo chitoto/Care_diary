@@ -346,7 +346,7 @@ module ActiveRecord
       _run_create_callbacks { super }
     end
 
-    def _update_record(*)
+    def _upstart_time(*)
       _run_update_callbacks { super }
     end
   end

@@ -102,7 +102,7 @@ module ActiveRecord
       super
     end
 
-    def _update_record(*args, touch: true, **options)
+    def _upstart_time(*args, touch: true, **options)
       if touch && should_record_timestamps?
         current_time = current_time_from_proper_timezone
 

@@ -134,12 +134,12 @@ ActiveRecord::Schema.define(version: 2020_12_18_194957) do
   create_table "wraps", force: :cascade do |t|
     t.string "precaution_title"
     t.text "precaution_content"
-    t.date "date_record", null: false
+    t.date "start_time", null: false
     t.bigint "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date_record"], name: "index_wraps_on_date_record"
     t.index ["pet_id"], name: "index_wraps_on_pet_id"
+    t.index ["start_time"], name: "index_wraps_on_start_time"
   end
 
   add_foreign_key "assigns", "groups"

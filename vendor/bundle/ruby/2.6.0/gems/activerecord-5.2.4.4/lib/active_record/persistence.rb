@@ -187,7 +187,7 @@ module ActiveRecord
         connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
       end
 
-      def _update_record(values, constraints) # :nodoc:
+      def _upstart_time(values, constraints) # :nodoc:
         constraints = _substitute_values(constraints).map { |attr, bind| attr.eq(bind) }
 
         um = arel_table.where(
@@ -478,7 +478,7 @@ module ActiveRecord
         write_attribute_without_type_cast(k, v)
       end
 
-      affected_rows = self.class._update_record(
+      affected_rows = self.class._upstart_time(
         attributes,
         self.class.primary_key => id_in_database
       )
@@ -693,7 +693,7 @@ module ActiveRecord
     end
 
     def _update_row(attribute_names, attempted_action = "update")
-      self.class._update_record(
+      self.class._upstart_time(
         attributes_with_values(attribute_names),
         self.class.primary_key => id_in_database
       )
@@ -702,13 +702,13 @@ module ActiveRecord
     def create_or_update(*args, &block)
       _raise_readonly_record_error if readonly?
       return false if destroyed?
-      result = new_record? ? _create_record(&block) : _update_record(*args, &block)
+      result = new_record? ? _create_record(&block) : _upstart_time(*args, &block)
       result != false
     end
 
     # Updates the associated record with values matching those of the instance attributes.
     # Returns the number of affected rows.
-    def _update_record(attribute_names = self.attribute_names)
+    def _upstart_time(attribute_names = self.attribute_names)
       attribute_names &= self.class.column_names
       attribute_names = attributes_for_update(attribute_names)
 
