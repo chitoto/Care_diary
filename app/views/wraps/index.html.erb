@@ -4,7 +4,7 @@
 <% @wraps.each do |wrap| %>
 <div class="index_table">
   <table>
-    <h4><%= l wrap.date_record, format: :long %>の記録</h4>
+    <h4><%= l wrap.start_time, format: :long %>の記録</h4>
     <%= link_to "詳細", pet_wrap_path(wrap.pet_id, wrap.id), class: "btn btn-outline-info" %>
     <%= link_to "編集", edit_pet_wrap_path(wrap.pet_id, wrap.id), class: "btn btn-outline-warning" %>
     <%= link_to '削除', pet_wrap_path(wrap.pet_id, wrap.id), method: :delete, class: "btn btn-outline-danger" %>
@@ -37,4 +37,13 @@
     </tr>
   </table>
 </div>
+<% end %>
+<%= month_calendar events: @wraps do |date, wraps| %>
+  <%= date.day %>
+
+  <% wraps.each do |wrap| %>
+    <div>
+      <%= link_to wrap.start_time, pet_wraps_path %>
+    </div>
+  <% end %>
 <% end %>

@@ -1,57 +1,119 @@
-<h1>Wraps#show</h1>
-<p><%= @wrap.pet.name %>の記録</p>
-<%= link_to "一覧画面に戻る", pet_wraps_path %>
-
-<p><%= t("activerecord.attributes.wrap.precaution_title") %>: <%= @wrap.precaution_title %></p>
-<p><%= t("activerecord.attributes.wrap.precaution_content") %>: <%= @wrap.precaution_content %></p>
-<p><%= t("activerecord.attributes.wrap.date_record") %>: <%= @wrap.date_record %></p>
-
-
-<h2>condition</h2>
-<table>
-  <% @wrap.conditions.each do |condition| %>
-    <tr><td><%= condition.start_time %></td></tr>
-    <tr><td><%= condition.weight %></td></tr>
-    <tr><td><%= condition.temperature %></td></tr>
-    <tr><td><%= condition.memo %></td></tr>
+<h1>介護記録詳細</h1>
+<%= link_to "一覧画面に戻る", pet_wraps_path, class: "btn btn-outline-info" %>
+<div class="index_table">
+  <h5><%= l @wrap.start_time, format: :long %></h5>
+  <h5><%= @wrap.pet.name %>の記録</h5>
+  <% unless @wrap.precaution_title.blank? || @wrap.precaution_content.blank? %>
+    <hr>
+    <p><%= @wrap.precaution_title %></p>
+    <p><%= @wrap.precaution_content %></p>
   <% end %>
-</table>
+</div>
 
-<h2>meal</h2>
-<table>
-  <% @wrap.meals.each do |meal| %>
-    <tr><td><%= meal.start_time %></td></tr>
-    <tr><td><%= meal.shape %></td></tr>
-    <tr><td><%= meal.amount %></td></tr>
-    <tr><td><%= meal.memo %></td></tr>
-  <% end %>
-</table>
+<div class="button_wrapper">
+  <ul class="nav nav-pills" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-condition-tab" data-toggle="pill" href="#pills-condition" role="tab" aria-controls="pills-condition" aria-selected="true"><%= t("activerecord.models.condition") %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-meal-tab" data-toggle="pill" href="#pills-meal" role="tab" aria-controls="pills-meal" aria-selected="false"><%= t("activerecord.models.meal") %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-excretion-tab" data-toggle="pill" href="#pills-excretion" role="tab" aria-controls="pills-excretion" aria-selected="false"><%= t("activerecord.models.excretion") %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-medicine-tab" data-toggle="pill" href="#pills-medicine" role="tab" aria-controls="pills-medicine" aria-selected="false"><%= t("activerecord.models.medicine") %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-walk-tab" data-toggle="pill" href="#pills-walk" role="tab" aria-controls="pills-walk" aria-selected="false"><%= t("activerecord.models.walk") %></a>
+    </li>
+  </ul>
+</div>
+<div class="contents_wrapper" id="nested">
+<!-- タブ-content -->
+  <div class="tab-content" id="pills-tabContent">
 
-<h2>excretion</h2>
-<table>
-  <% @wrap.excretions.each do |excretion| %>
-    <tr><td><%= excretion.start_time %></td></tr>
-    <tr><td><%= excretion.shape %></td></tr>
-    <tr><td><%= excretion.amount %></td></tr>
-    <tr><td><%= excretion.smell %></td></tr>
-    <tr><td><%= excretion.memo %></td></tr>
-  <% end %>
-</table>
+    <div class="tab-pane fade show active" id="pills-condition" role="tabpanel" aria-labelledby="pills-condition-tab">
+      <h2><%= t("activerecord.models.condition") %></h2>
+      <hr>
+        <div class="">
+          <table>
+            <% @wrap.conditions.each do |condition| %>
+              <tr><td><%= condition.start_time %></td></tr>
+              <tr><td><%= condition.weight %></td></tr>
+              <tr><td><%= condition.temperature %></td></tr>
+              <tr><td><%= condition.memo %></td></tr>
+            <% end %>
+          </table>
+        </div>
 
-<h2>medicine</h2>
-<table>
-  <% @wrap.medicines.each do |medicine| %>
-    <tr><td><%= medicine.start_time %></td></tr>
-    <tr><td><%= medicine.shape %></td></tr>
-    <tr><td><%= medicine.memo %></td></tr>
-  <% end %>
-</table>
+    </div>
 
-<h2>walk</h2>
-<table>
-  <% @wrap.walks.each do |walk| %>
-    <tr><td><%= walk.start_time %></td></tr>
-    <tr><td><%= walk.how_many %></td></tr>
-    <tr><td><%= walk.memo %></td></tr>
-  <% end %>
-</table>
+    <div class="tab-pane fade" id="pills-meal" role="tabpanel" aria-labelledby="pills-meal-tab">
+      <h2><%= t("activerecord.models.meal") %></h2>
+      <hr>
+        <div class="form-group">
+          <table>
+            <% @wrap.meals.each do |meal| %>
+              <tr><td><%= meal.start_time %></td></tr>
+              <tr><td><%= meal.shape %></td></tr>
+              <tr><td><%= meal.amount %></td></tr>
+              <tr><td><%= meal.memo %></td></tr>
+            <% end %>
+          </table>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="pills-excretion" role="tabpanel" aria-labelledby="pills-excretion-tab">
+      <h2><%= t("activerecord.models.excretion") %></h2>
+      <hr>
+
+        <div class="form-group">
+          <table>
+            <% @wrap.excretions.each do |excretion| %>
+              <tr><td><%= excretion.start_time %></td></tr>
+              <tr><td><%= excretion.shape %></td></tr>
+              <tr><td><%= excretion.amount %></td></tr>
+              <tr><td><%= excretion.smell %></td></tr>
+              <tr><td><%= excretion.memo %></td></tr>
+            <% end %>
+          </table>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="pills-medicine" role="tabpanel" aria-labelledby="pills-medicine-tab">
+      <h2><%= t("activerecord.models.medicine") %></h2>
+      <hr>
+
+        <div class="form-group">
+          <table>
+            <% @wrap.medicines.each do |medicine| %>
+              <tr><td><%= medicine.start_time %></td></tr>
+              <tr><td><%= medicine.shape %></td></tr>
+              <tr><td><%= medicine.memo %></td></tr>
+            <% end %>
+          </table>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="pills-walk" role="tabpanel" aria-labelledby="pills-walk-tab">
+      <h2><%= t("activerecord.models.walk") %></h2>
+      <hr>
+
+        <div class="form-group">
+          <table>
+            <% @wrap.walks.each do |walk| %>
+              <tr><td><%= walk.start_time %></td></tr>
+              <tr><td><%= walk.how_many %></td></tr>
+              <tr><td><%= walk.memo %></td></tr>
+            <% end %>
+          </table>
+        </div>
+
+    </div>
+  </div>
+
+</div>

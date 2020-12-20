@@ -86,7 +86,7 @@ module ActiveRecord
 
             self[locking_column] += 1
 
-            affected_rows = self.class._update_record(
+            affected_rows = self.class._upstart_time(
               attributes_with_values(attribute_names),
               self.class.primary_key => id_in_database,
               locking_column => previous_lock_value

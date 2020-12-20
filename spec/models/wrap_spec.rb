@@ -12,22 +12,22 @@ RSpec.describe Wrap, type: :model do
         wrap = Wrap.new(
           precaution_title: 'rspec',
           precaution_content: 'rspec',
-          date_record: '2020/01/01',
+          start_time: '2020/01/01',
           pet_id: @pet.id
         )
           expect(wrap).to be_valid
       end
     end
     context '入力に空がある場合' do
-      it "is invalid without a date_record" do
+      it "is invalid without a start_time" do
         wrap = Wrap.new(
           precaution_title: 'rspec',
           precaution_content: 'rspec',
-          date_record: nil,
+          start_time: nil,
           pet_id: @pet.id
         )
         wrap.valid?
-        expect(wrap.errors[:date_record]).to include("を入力してください")
+        expect(wrap.errors[:start_time]).to include("を入力してください")
       end
     end
     context '文字数が制限を超えている場合' do

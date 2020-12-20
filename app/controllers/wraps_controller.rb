@@ -4,7 +4,7 @@ class WrapsController < ApplicationController
 
   def index
     @pet = Pet.find(params[:pet_id])
-    @wraps = @pet.wraps.includes(:conditions).all.order(date_record: :desc)
+    @wraps = @pet.wraps.includes(:conditions).all.order(start_time: :desc)
   end
 
   def new
@@ -23,7 +23,7 @@ class WrapsController < ApplicationController
     if @wrap.save
       redirect_to pet_wraps_path(@wrap.pet_id), notice: "介護記録を登録しました！"
     else
-      if @wrap[:date_record].blank?
+      if @wrap[:start_time].blank?
         redirect_to new_pet_wrap_path(@wrap.pet_id), notice: "記録日が入力されていません！"
       else
         redirect_to new_pet_wrap_path(@wrap.pet_id), notice: "介護記録の登録に失敗しました！"
@@ -58,7 +58,7 @@ class WrapsController < ApplicationController
   private
 
   def wrap_params
-    params.require(:wrap).permit(:id, :precaution_title, :precaution_content, :date_record, :pet_id,
+    params.require(:wrap).permit(:id, :precaution_title, :precaution_content, :start_time, :pet_id,
     conditions_attributes: [ :id, :start_time, :weight, :temperature, :memo ],
     meals_attributes: [ :id, :start_time, :shape, :amount, :memo ],
     excretions_attributes: [ :id, :start_time, :shape, :amount, :smell, :memo ],
@@ -68,7 +68,7 @@ class WrapsController < ApplicationController
   end
 
   def update_wrap_params
-    params.require(:wrap).permit(:id, :precaution_title, :precaution_content, :date_record, :pet_id,
+    params.require(:wrap).permit(:id, :precaution_title, :precaution_content, :start_time, :pet_id,
     conditions_attributes: [ :id, :start_time, :weight, :temperature, :memo, :_destroy ],
     meals_attributes: [ :id, :start_time, :shape, :amount, :memo, :_destroy ],
     excretions_attributes: [ :id, :start_time, :shape, :amount, :smell, :memo, :_destroy ],

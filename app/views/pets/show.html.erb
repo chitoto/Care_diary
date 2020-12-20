@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <th><%= t("activerecord.attributes.pet.birthday") %>:</th>
-      <td colspan="2"><%= @pet.birthday %></td>
+      <td colspan="2"><%= l @pet.birthday, format: :long %></td>
       <th><%= t("activerecord.attributes.pet.gender") %>:</th>
       <td><%= @pet.gender %></td>
     </tr>

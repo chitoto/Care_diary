@@ -130,7 +130,7 @@ module ActiveRecord
           result
         end
 
-        def _update_record(*)
+        def _upstart_time(*)
           affected_rows = partial_writes? ? super(keys_for_partial_write) : super
           changes_applied
           affected_rows
