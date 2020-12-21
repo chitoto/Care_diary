@@ -109,7 +109,7 @@ ___
 - [x] devise
 - [x] コメント機能
 #### カリキュラム外の技術１つ
-- [x] SNSログイン
+- [x] ransack
 ___
 ### カタログ設計
 https://docs.google.com/spreadsheets/d/1VN4TUUtaxoDlsHDO_mTb35kCe8r-iUgk_gl4wwA2hIY/edit?usp=sharing
