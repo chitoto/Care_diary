@@ -64,7 +64,7 @@ ___
 - [] 登録のフローチャート表示
   - [] 登録から記録投稿するまでの流れをわかりやすくする
 - [] 日別の介護記録をカレンダーで表示
-  - [] UI向上、Gem simple_calendar または FullCalendar
+  - [x] UI向上、Gem simple_calendar または FullCalendar
 - [] 体重などグラフを用いて表示
   - [] Gem chartkick
 - [] 入力ワンクリックで入力できるようにする
