@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Wrap, type: :model do
-  describe 'pet登録機能' do
+  describe 'wrap登録機能' do
     before do
       user = FactoryBot.create(:user)
       group = FactoryBot.create(:group, owner_id: user.id)
