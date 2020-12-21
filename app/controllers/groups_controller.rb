@@ -4,6 +4,8 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all.order(owner_id: :desc)
+    @search = Group.ransack(params[:q])
+    @groups = @search.result
   end
 
   def show

@@ -2,6 +2,14 @@
 <br>
 <p>※新しいグループを作成するか、参加するグループを選んで詳細へ</p>
 <%= link_to "新しくグループを作成", new_group_path, class: "btn btn-primary" %>
+<br><br>
+<%= search_form_for @search, url: groups_path do |f| %>
+  <% f.label :name_cont, 'グループ名' %>
+  <%= f.search_field :name_cont, class: "form-control" %>
+  <%= f.submit '検索', class: 'btn-block btn-outline-secondary'  %>
+<% end %>
+
+<%= sort_link(@search, :name) -%>
 
 <% @groups.each do |group| %>
 <div class="contents_wrapper index_table">
