@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "groups#index"
   get 'static_pages/home'
   get 'static_pages/about'
-  
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   resources :groups do
     collection do
-      post 'add_menber'
+      post 'add_member'
+      post 'change_owner'
+      delete 'delete_member'
     end
   end
 

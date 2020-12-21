@@ -32,7 +32,7 @@
       </td>
       <% unless @group.members.include?(current_user) %>
         <td>
-          <%= button_to "グループに参加", {controller: :groups, action: :add_menber, group: @group},{method: :post, class: "btn btn-primary"} %>
+          <%= button_to "グループに参加", {controller: :groups, action: :add_member, group: @group},{method: :post, class: "btn btn-primary"} %>
         </td>
       <% end %>
     </tr>
@@ -40,21 +40,29 @@
 <hr>
 <% if @group.members.include?(current_user) %>
     <h5>グループメンバー一覧</h5>
-    <% @group.members.each do |menber| %>
+    <% @group.members.each do |member| %>
       <table>
         <hr>
         <tr>
-          <% if menber.icon.blank? %>
+          <% if member.icon.blank? %>
             <td colspan="2" rowspan="2"><%= image_tag 'icon.png', width:'50px', height:'50px', alt: 'No image' %></td>
           <% else %>
-            <td colspan="2"  rowspan="2"><%= image_tag menber.icon.url, width:'50px', height:'50px' %></td>
+            <td colspan="2"  rowspan="2"><%= image_tag member.icon.url, width:'50px', height:'50px' %></td>
           <% end %>
           <th><%= t("activerecord.attributes.user.name") %></th>
-          <td colspan="5" class="text_table"><%= menber.name %></td>
+          <td colspan="5" class="text_table"><%= member.name %></td>
+          <% if current_user == @group.owner %>
+            <td colspan="2" rowspan="2">
+              <% unless member == current_user %>
+              <%= button_to "管理者", {controller: :groups, action: :change_owner, group_id: @group.id, user_id: member.id },{method: :post, class: "btn btn-outline-danger"} %>
+              <%= button_to "外す", {controller: :groups, action: :delete_member, group_id: @group.id, user_id: member.id},{method: :delete, class: "btn btn-outline-danger"} %>
+              <% end %>
+            </td>
+            <% end %>
         </tr>
         <tr>
           <th><%= t("activerecord.attributes.user.email") %></th>
-          <td colspan="5" class="text_table"><%= menber.email %></td>
+          <td colspan="5" class="text_table"><%= member.email %></td>
         </tr>
       </table>
     <% end %>

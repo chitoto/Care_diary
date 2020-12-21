@@ -137,3 +137,6 @@ ___
 - chartkick
 - simple_calendar
 - Kaminari
+- omniauth
+- omniauth-google-oauth2
+- omniauth-facebook
