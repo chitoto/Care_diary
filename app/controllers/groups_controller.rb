@@ -42,7 +42,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.members.destroy
     @group.destroy
-    redirect_to groups_url, notice: I18n.t('views.messages.delete_group')
+    redirect_to groups_url, notice: 'グループを削除しました！'
   end
 
   def add_member
