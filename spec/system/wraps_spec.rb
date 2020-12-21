@@ -33,21 +33,21 @@ RSpec.describe "Wraps", type: :system do
       end
     end
     context '記録日を空にした場合' do
-      it '作成済みのペット一覧が表示される' do
+      it '保存されない' do
         click_on '介護記録する'
         click_on '新規登録する'
         fill_in '記録日', with: nil
         fill_in '項目', with: 'test_title'
         fill_in '内容', with: 'test_content'
         click_on 'commit'
-        expect(page).to have_content '介護記録の登録に失敗しました'
+        expect(page).to have_content '記録日が入力されていません'
       end
     end
     context 'condition入力する場合' do
       it 'conditionカウントが増える' do
         click_on '介護記録する'
         click_on '新規登録する'
-        click_link '身体'
+        click_link '体調'
         fill_in '記録日', with: '002020-03-01'
         fill_in '時間', with: '1212'
         fill_in '体重', with: '10.5'
