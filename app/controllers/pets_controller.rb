@@ -8,6 +8,7 @@ class PetsController < ApplicationController
 
   def new
     @pet = Pet.new
+    @pet[:group_id] = params[:group_id] 
   end
 
   def create

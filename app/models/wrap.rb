@@ -4,6 +4,12 @@ class Wrap < ApplicationRecord
   validates :precaution_content, length: { maximum: 255 }
   validate :date_before_today
 
+  def date_before_today
+    if start_time.present? && start_time > Date.today
+      errors.add(:date, ": 未来の日付は使用できません")
+    end
+  end
+
   belongs_to :pet
 
   has_many :conditions,  dependent: :destroy, index_errors: true
@@ -19,7 +25,4 @@ class Wrap < ApplicationRecord
   has_many :walks,  dependent: :destroy
   accepts_nested_attributes_for :walks, allow_destroy: true, reject_if: :all_blank
 
-  def date_before_today
-    errors.add(:start_time, "は今日より過去のものを選択してください") if start_time > Date.today
-  end
 end
