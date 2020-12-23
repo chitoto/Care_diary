@@ -83,7 +83,12 @@ class WrapsController < ApplicationController
   end
 
   def group_menber?
-    @pet = Pet.find(params[:pet_id])
+    if @wrap.blank?
+      @pet = Pet.find(params[:pet_id])
+    else
+      pet = @wrap.pet[:id]
+      @pet = Pet.find(pet)
+    end
     current_user == @pet.group.members
   end
 
