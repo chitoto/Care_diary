@@ -33,10 +33,14 @@
   </div>
 
   <div class="actions">
-    <%= f.submit t('.sign_up'), class: "btn btn-primary" %>
+    <%= f.submit t('.sign_up'), class: "btn btn-primary" %><br>
   </div>
 <% end %>
 <hr>
-<%= render "devise/shared/links" %>
+<%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-facebook" do %>
+<i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i> Facebookで登録する
+<% end %>&nbsp;
+<%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-google" do %>
+<i class="fab fa-google fa-2x" aria-hidden="true"></i> Googleで登録する
+<% end %>
 </div>
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
