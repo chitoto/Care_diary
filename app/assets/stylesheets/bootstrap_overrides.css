@@ -1,11 +1,16 @@
 body{
-  height: 100%;
+  min-height: 100vh;
+  position: relative;
   background-color: #fff;
   color: #555;
+  padding-bottom: 350px;
+  box-sizing: border-box;
 }
-
+.row{
+  width: 100%;
+  margin: 0 0;
+}
 .navbar{
-  padding-right: 10rem;
   background-color: #38D0BC;
   height: 4rem;
 }
@@ -54,12 +59,9 @@ div.container{
 
 .main {
   margin-top: 2rem;
-  width:600px;
   height: 100%;
 }
-.row{
-  margin: 0 0;
-}
+
 .alert{
   text-align: center;
 }
@@ -67,22 +69,23 @@ h1,h2{
   text-align: center;
 }
 .right_side{
-  background-image: image-url('memo.png');
-  background-size:  cover;
   width: 250px;
   margin-top: 4rem;
   padding: 1rem;
   text-align: center;
+  border-left: 1px solid #ccc;
 }
 ul.right{
   list-style: none;
-}
-
-div.right table ul li{
-  width: 100%;
   text-align: left;
+}
+div.right table{
+  text-align: center;
+}
+div.right table tr td{
+  width: 100px;
   overflow-wrap: break-word;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 .left_side{
   width: 250px;
@@ -169,7 +172,10 @@ div.right table ul li{
   margin-bottom: 5rem;
 }
 footer {
+  margin-top: 5rem;
   text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 .footer_color{
   padding-top: 1rem;
@@ -182,8 +188,8 @@ footer {
   filter: drop-shadow(1px -5px 10px rgba(5,5,5,0.2));
   width: 100%;
   color: #38D0BC;
-  margin-top: -1rem;
   margin-bottom: 0;
+  z-index: -99;
 }
 .page_wrapper {
   padding: 1rem 1rem;
@@ -213,4 +219,23 @@ footer {
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #93c9ff;
+  border-color: #93c9ff;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+.pagination>.active>a {
+  background-color: #93c9ff;
+  border-radius: 15px;
+}
+.pagination>li>a:hover {
+  border-radius: 15px;
 }

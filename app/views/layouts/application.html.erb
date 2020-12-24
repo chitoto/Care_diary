@@ -16,7 +16,7 @@
         <button class="navbar-toggler" id= "top_icon" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
           <% if user_signed_in? %>
           <li class="nav-item dropdown">
@@ -51,10 +51,10 @@
     </header>
     <div class="container">
       <div class="row">
-        <div class="left_side col-md">
+        <div class="left_side d-none d-lg-block">
           <%= render 'layouts/left_side' %>
         </div>
-        <div class="main col-xs">
+        <div class="main col-md">
           <% if notice %>
             <p class="alert alert-notice"><%= notice %></p>
           <% end %>
@@ -63,7 +63,7 @@
           <% end %>
           <%= yield %>
         </div>
-        <div class="right_side col-md">
+        <div class="right_side d-none d-lg-block">
           <%= render 'layouts/right_side' %>
         </div>
       </div>

@@ -3,17 +3,16 @@
     <h5>プロフィール&nbsp;<i class="fas fa-address-card"></i></h5>
     <table>
       <tr>
-        <td rowspan="2">
+        <td>
           <% if current_user.icon.blank? %>
             <%= image_tag 'icon.png', width:'100px', height:'100px', alt: 'No image' %>
           <% else %>
           <%= image_tag current_user.icon.url %>
           <% end %>
         </td>
-        <td><%= current_user.name %></td>
       </tr>
       <tr>
-        <td><%= current_user.email %></td>
+        <td><%= current_user.name %></td>
       </tr>
     </table>
     <hr>
@@ -21,11 +20,13 @@
     <h5>グループ&nbsp;<i class="fas fa-users"></i></h5>
     <%= link_to "作成", new_group_path, class: 'btn btn-outline-info' %>
     <%= link_to "他一覧", groups_path, class: 'btn btn-outline-info' %>
-    <% if current_user.groups.blank? %>
-    <p>所属グループがありません、グループを作成するか所属するグループを選んでください</p>
-    <% else %>
-    <br><br>
-      <ul class="right">
+    <ul class="right">
+      <% if current_user.groups.blank? %>
+        <li>所属グループがありません、グループを作成するか所属するグループを選んでください</li>
+      <% else %>
+        <br><br>
+        <li>所属グループ</li>
+        <br>
         <% current_user.groups.each do |group| %>
           <li><%= link_to "#{group.name}".truncate(20), group_path(group) %></li>
         <% end %>

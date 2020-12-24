@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
     @groups = Group.all.order(owner_id: :desc)
     @search = Group.ransack(params[:q])
     @groups = @search.result
+    @groups = @groups.page(params[:page]).per(5)
   end
 
   def show
