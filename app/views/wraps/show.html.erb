@@ -45,7 +45,7 @@
       <% @wrap.conditions.each do |condition| %>
         <div class="index_table">
           <table>
-            <tr><td><%= condition.start_time.strftime("%H時%M分") %></td></tr>
+            <tr><td><%= condition.start_time.strftime("%H時%M分") unless condition.start_time.blank? %></td></tr>
             <tr><td><%= condition.weight %>kg</td></tr>
             <tr><td><%= condition.temperature %>℃</td></tr>
             <tr><td><%= condition.memo %></td></tr>
@@ -60,7 +60,7 @@
       <% @wrap.meals.each do |meal| %>
         <div class="index_table">
           <table>
-            <tr><td><%= meal.start_time.strftime("%H時%M分") %></td></tr>
+            <tr><td><%= meal.start_time.strftime("%H時%M分") unless meal.start_time.blank? %></td></tr>
             <tr><td><%= meal.shape %></td></tr>
             <tr><td><%= meal.amount %></td></tr>
             <tr><td><%= meal.memo %></td></tr>
@@ -75,7 +75,7 @@
       <% @wrap.excretions.each do |excretion| %>
         <div class="index_table">
           <table>
-            <tr><td><%= excretion.start_time.strftime("%H時%M分") %></td></tr>
+            <tr><td><%= excretion.start_time.strftime("%H時%M分") unless excretion.start_time.blank? %></td></tr>
             <tr><td><%= excretion.shape %></td></tr>
             <tr><td><%= excretion.amount %></td></tr>
             <tr><td><%= excretion.smell %></td></tr>
@@ -91,7 +91,7 @@
       <% @wrap.medicines.each do |medicine| %>
         <div class="index_table">
           <table>
-            <tr><td><%= medicine.start_time.strftime("%H時%M分") %></td></tr>
+            <tr><td><%= medicine.start_time.strftime("%H時%M分") unless medicine.start_time.blank? %></td></tr>
             <tr><td><%= medicine.shape %></td></tr>
             <tr><td><%= medicine.memo %></td></tr>
           </table>
@@ -105,7 +105,7 @@
       <% @wrap.walks.each do |walk| %>
         <div class="index_table">
           <table>
-            <tr><td><%= walk.start_time.strftime("%H時%M分") %></td></tr>
+            <tr><td><%= walk.start_time.strftime("%H時%M分") unless walk.start_time.blank? %></td></tr>
             <tr><td><%= walk.how_many %></td></tr>
             <tr><td><%= walk.memo %></td></tr>
           </table>
