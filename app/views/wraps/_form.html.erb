@@ -59,15 +59,15 @@
       <%= f.fields_for :conditions do |condition| %>
         <div class="form-group">
           <%= condition.label :start_time %><br>
-          <%= condition.time_field :start_time %>
+          <%= condition.time_field :start_time, placeholder: Time.new.to_i %>
         </div>
         <div class="form-group">
           <%= condition.label :weight %><br>
-          <%= condition.number_field :weight, step: "0.1" %>
+          <%= condition.number_field :weight, step: "0.1", placeholder: "10.5" %>
         </div>
         <div class="form-group">
           <%= condition.label :temperature %><br>
-          <%= condition.number_field :temperature, step: "0.1" %><br>
+          <%= condition.number_field :temperature, step: "0.1", placeholder: "38.5" %><br>
         </div>
         <div class="form-group">
           <%= condition.label :memo %><br>

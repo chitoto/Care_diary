@@ -21,7 +21,7 @@
           <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= current_user.name.truncate(10) %>
+              <i class="fas fa-address-card fa-2x"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "マイページ", user_path(current_user.id), class: 'dropdown-item' %>
@@ -30,7 +30,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              グループ
+              <i class="fas fa-users fa-2x"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to '新しくグループを作成', new_group_path, class: 'dropdown-item' %>
@@ -51,10 +51,10 @@
     </header>
     <div class="container">
       <div class="row">
-        <div class="left_side col-sm">
+        <div class="left_side col-md">
           <%= render 'layouts/left_side' %>
         </div>
-        <div class="main col-md-">
+        <div class="main col-xs">
           <% if notice %>
             <p class="alert alert-notice"><%= notice %></p>
           <% end %>
@@ -63,14 +63,12 @@
           <% end %>
           <%= yield %>
         </div>
-        <div class="right_side col-">
+        <div class="right_side col-md">
           <%= render 'layouts/right_side' %>
         </div>
       </div>
     </div>
-
-
-    <footer>
+    <footer class="navbar-expand-lg">
       <%= image_tag 'sanpo.png', class:"navbar-expand-lg", id: "footer_decoration" %>
       <div class="footer_color">
         <%= link_to 'プライバシー・ポリシー', static_pages_about_path %><br>

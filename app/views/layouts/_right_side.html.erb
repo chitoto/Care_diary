@@ -1,6 +1,6 @@
 <div class="right">
   <% if user_signed_in? %>
-    <h5>プロフィール</h5>
+    <h5>プロフィール&nbsp;<i class="fas fa-address-card"></i></h5>
     <table>
       <tr>
         <td rowspan="2">
@@ -10,15 +10,15 @@
           <%= image_tag current_user.icon.url %>
           <% end %>
         </td>
-        <td class="text_table"><%= current_user.name %></td>
+        <td><%= current_user.name %></td>
       </tr>
       <tr>
-        <td class="text_table"><%= current_user.email %></td>
+        <td><%= current_user.email %></td>
       </tr>
     </table>
     <hr>
   <div>
-    <h5>グループ</h5>
+    <h5>グループ&nbsp;<i class="fas fa-users"></i></h5>
     <%= link_to "作成", new_group_path, class: 'btn btn-outline-info' %>
     <%= link_to "他一覧", groups_path, class: 'btn btn-outline-info' %>
     <% if current_user.groups.blank? %>
