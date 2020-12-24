@@ -1,3 +1,7 @@
+html{
+  margin: 0;
+  padding: 0;
+}
 body{
   height: 100%;
   background-color: #fff;
@@ -47,17 +51,26 @@ nav .nav-link:hover {
   color: #fff;
   text-decoration: none;
 }
+div.container{
+  margin-top: 5rem;
+}
 
 .main {
-  margin-top: 5rem;
+  margin-top: 2rem;
   width:600px;
-  margin-bottom: 5rem;
   height: 100%;
 }
 .alert{
   text-align: center;
 }
 h1,h2{
+  text-align: center;
+}
+
+.right_side{
+  margin-top: 4rem;
+  margin-right: 0;
+  margin-left: 2rem;
   text-align: center;
 }
 .form-group input{
@@ -70,7 +83,6 @@ h1,h2{
 .form_wrapper {
   padding: 1rem 1rem;
   text-align: center;
-  margin-bottom: 5rem;
 }
 .contents_wrapper {
   margin-top: 3rem;
@@ -96,6 +108,7 @@ h1,h2{
   height: 100%;
   text-align: left;
   overflow-wrap: break-word;
+  padding: 1rem;
 }
 
 #nested{
@@ -115,7 +128,9 @@ h1,h2{
 #navbarDropdownMenuLink{
   color: #fff;
 }
-
+.right{
+  list-style: none;
+}
 .button_wrapper {
   margin-top: 2rem;
 }
@@ -142,15 +157,24 @@ h1,h2{
   margin-bottom: 5rem;
 }
 footer {
-  background-color: #38D0BC;
-  width: 100%;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+
   text-align: center;
   position: absolute;
+  left: 0;
 }
-
+.footer_color{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #38D0BC;
+  width: 100%;
+}
+#footer_decoration{
+  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.2));
+  width: 100%;
+  color: #38D0BC;
+  margin-top: -3rem;
+  margin-bottom: 0;
+}
 .page_wrapper {
   padding: 1rem 1rem;
   margin-bottom: 5rem;
@@ -179,4 +203,7 @@ footer {
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+}
+.right_side{
+  width: 250px;
 }

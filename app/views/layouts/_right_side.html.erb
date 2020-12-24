@@ -1,0 +1,35 @@
+<div class="right">
+  <% if user_signed_in? %>
+    <h5>プロフィール</h5>
+    <table>
+      <tr>
+        <td rowspan="2">
+          <% if current_user.icon.blank? %>
+            <%= image_tag 'icon.png', width:'100px', height:'100px', alt: 'No image' %>
+          <% else %>
+          <%= image_tag current_user.icon.url %>
+          <% end %>
+        </td>
+        <td class="text_table"><%= current_user.name %></td>
+      </tr>
+      <tr>
+        <td class="text_table"><%= current_user.email %></td>
+      </tr>
+    </table>
+    <hr>
+  <div>
+    <h5>グループ</h5>
+    <%= link_to "作成", new_group_path, class: 'btn btn-outline-info' %>
+    <%= link_to "他一覧", groups_path, class: 'btn btn-outline-info' %>
+    <% if current_user.groups.blank? %>
+    <p>所属グループがありません、グループを作成するか所属するグループを選んでください</p>
+    <% else %>
+    <br><br>
+      <ul class="right">
+        <% current_user.groups.each do |group| %>
+          <li><%= link_to "#{group.name}".truncate(20), group_path(group) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

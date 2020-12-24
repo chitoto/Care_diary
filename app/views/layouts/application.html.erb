@@ -16,7 +16,7 @@
         <button class="navbar-toggler" id= "top_icon" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
           <ul class="navbar-nav">
           <% if user_signed_in? %>
           <li class="nav-item dropdown">
@@ -49,18 +49,33 @@
         </div>
       </nav>
     </header>
-    <div class="container main">
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
-      <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="left_side col-sm">
+          <%= render 'layouts/left_side' %>
+        </div>
+        <div class="main col-md-">
+          <% if notice %>
+            <p class="alert alert-notice"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-error"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div>
+        <div class="right_side col-">
+          <%= render 'layouts/right_side' %>
+        </div>
+      </div>
     </div>
+
+
     <footer>
-      <%= link_to 'プライバシー・ポリシー', static_pages_about_path %><br>
-      <small>Copyright &copy; Yumiko_Kamiyama All Rights Reserved. </small>
-   </footer>
+      <%= image_tag 'sanpo.png', class:"navbar-expand-lg", id: "footer_decoration" %>
+      <div class="footer_color">
+        <%= link_to 'プライバシー・ポリシー', static_pages_about_path %><br>
+        <small>Copyright &copy; Yumiko_Kamiyama All Rights Reserved. </small>
+      </div>
+     </footer>
   </body>
 </html>
