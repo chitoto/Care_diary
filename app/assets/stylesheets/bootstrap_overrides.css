@@ -145,7 +145,6 @@ div.right table tr td{
   color: #fff;
 }
 
-
 .button_wrapper {
   margin-top: 2rem;
 }
@@ -163,10 +162,14 @@ div.right table tr td{
   width: 100px;
   text-align: center;
 }
+
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #fff;
   background-color: #38D0BC;
-
+}
+#pills-member-tab,#pills-pet-tab {
+  width: 300px;
+  text-align: center;
 }
 .end_table {
   margin-bottom: 5rem;

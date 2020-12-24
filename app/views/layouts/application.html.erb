@@ -51,7 +51,7 @@
     </header>
     <div class="container">
       <div class="row">
-        <div class="left_side d-none d-lg-block">
+        <div class="left_side d-none d-md-block">
           <%= render 'layouts/left_side' %>
         </div>
         <div class="main col-md">
@@ -63,9 +63,11 @@
           <% end %>
           <%= yield %>
         </div>
-        <div class="right_side d-none d-lg-block">
+        <% if user_signed_in? %>
+        <div class="right_side d-none d-md-block">
           <%= render 'layouts/right_side' %>
         </div>
+        <% end %>
       </div>
     </div>
     <footer class="navbar-expand-lg">
