@@ -41,6 +41,7 @@
               <% end %>
             </div>
           </li>
+          <li><%= link_to 'フォロー機能', users_path %></li>
           <% else %>
           <li><%= link_to 'ログイン', new_user_session_path, class: 'dropdown-item nav-devise' %></li>
           <li><%= link_to 'サインアップ', new_user_registration_path, class: 'dropdown-item nav-devise' %></li>
