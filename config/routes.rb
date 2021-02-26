@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'relationships/create'
+  get 'relationships/destroy'
   root to: "groups#index"
   get 'static_pages/home'
   get 'static_pages/about'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   resources :users, only: [:index, :show]
+  resources :relationships, only: [:create, :destroy]
 
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
