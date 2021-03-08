@@ -19,8 +19,10 @@
         <td><%= board.title %></td>
         <td><%= board.content %></td>
         <td><%= link_to 'Show', board %></td>
-        <td><%= link_to 'Edit', edit_board_path(board) %></td>
-        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if board.user_id == current_user.id %>
+          <td><%= link_to 'Edit', edit_board_path(board) %></td>
+          <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

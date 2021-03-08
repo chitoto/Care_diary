@@ -26,6 +26,7 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
+    @board.user_id = current_user.id
 
     respond_to do |format|
       if @board.save
@@ -41,24 +42,32 @@ class BoardsController < ApplicationController
   # PATCH/PUT /boards/1
   # PATCH/PUT /boards/1.json
   def update
-    respond_to do |format|
-      if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
-        format.json { render :show, status: :ok, location: @board }
-      else
-        format.html { render :edit }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
+    if @board.user_id == current_user.id
+      respond_to do |format|
+        if @board.update(board_params)
+          format.html { redirect_to @board, notice: 'Board was successfully updated.' }
+          format.json { render :show, status: :ok, location: @board }
+        else
+          format.html { render :edit }
+          format.json { render json: @board.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to @board, notice: "投稿したユーザー以外は編集できません！"
     end
   end
 
   # DELETE /boards/1
   # DELETE /boards/1.json
   def destroy
-    @board.destroy
-    respond_to do |format|
-      format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
-      format.json { head :no_content }
+    if @board.user_id == current_user.id
+      @board.destroy
+      respond_to do |format|
+        format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @board, notice: "投稿したユーザー以外は削除できません！"
     end
   end
 
