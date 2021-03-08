@@ -41,6 +41,19 @@
               <% end %>
             </div>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-clipboard-list fa-2x"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "掲示板", boards_path, class: 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
+              <p><%= "#{current_user.name.truncate(10)}の投稿" %></p>
+              <% current_user.boards.each do |board| %>
+                <%= link_to "#{board.title}".truncate(20), board_path(board), class: 'dropdown-item ' %>
+              <% end %>
+            </div>
+          </li>
           <li><%= link_to 'フォロー機能', users_path %></li>
           <% else %>
           <li><%= link_to 'ログイン', new_user_session_path, class: 'dropdown-item nav-devise' %></li>
