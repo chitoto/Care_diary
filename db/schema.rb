@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_082622) do
+ActiveRecord::Schema.define(version: 2021_03_08_091136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,11 @@ ActiveRecord::Schema.define(version: 2021_02_23_082622) do
   end
 
   create_table "boards", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title"
     t.text "content"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -164,7 +163,6 @@ ActiveRecord::Schema.define(version: 2021_02_23_082622) do
 
   add_foreign_key "assigns", "groups"
   add_foreign_key "assigns", "users"
-  add_foreign_key "boards", "users"
   add_foreign_key "comments", "pets"
   add_foreign_key "conditions", "wraps"
   add_foreign_key "excretions", "wraps"

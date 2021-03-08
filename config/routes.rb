@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :boards
   get 'relationships/create'
   get 'relationships/destroy'
   root to: "groups#index"
