@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   resources :boards
-  get 'relationships/create'
-  get 'relationships/destroy'
   root to: "groups#index"
   get 'static_pages/home'
   get 'static_pages/about'

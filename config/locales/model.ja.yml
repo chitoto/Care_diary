@@ -10,6 +10,7 @@ ja:
       excretion: 排泄
       medicine: お薬
       walk: さんぽ
+      board: 掲示板
     attributes:
       user:
         name: 名前
@@ -58,3 +59,6 @@ ja:
         start_time: 時間
         how_many: 実行時間
         memo: メモ
+      board:
+        title: タイトル
+        content: 内容
