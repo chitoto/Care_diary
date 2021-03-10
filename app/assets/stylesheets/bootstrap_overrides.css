@@ -6,6 +6,9 @@ body{
   padding-bottom: 350px;
   box-sizing: border-box;
 }
+i{
+  color: #fff;
+}
 .row{
   width: 100%;
   margin: 0 0;
